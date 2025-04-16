@@ -6,7 +6,6 @@
 */
 
 #include "include/wolf.h"
-#include "Game/map.c"
 #include <stdio.h>
 #include <stdlib.h>
 

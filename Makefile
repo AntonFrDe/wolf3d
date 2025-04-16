@@ -6,6 +6,7 @@
 ##
 
 SRC	=	main.c \
+		Game/map.c \
 		
 
 CFLAGS	+=	-W -Wall -Wextra -g3
