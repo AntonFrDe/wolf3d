@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-SRC	=	
+SRC	=	main.c \
 		
 
 CFLAGS	+=	-W -Wall -Wextra -g3

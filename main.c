@@ -6,7 +6,9 @@
 */
 
 #include "include/wolf.h"
+#include "Game/map.c"
 #include <stdio.h>
+#include <stdlib.h>
 
 void draw_floor_and_ceiling(sfRenderWindow *window)
 {
@@ -21,7 +23,7 @@ void draw_floor_and_ceiling(sfRenderWindow *window)
 
 int is_wall(int x, int y)
 {
-    if (map[x, y] == 1)
+    if (map[x][y] == 1)
         return 1;
     return 0;
 }
@@ -44,15 +46,18 @@ int events(sfRenderWindow *window)
     return 0;
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
     sfVideoMode mode = {800, 600, 32};
     sfRenderWindow *window = sfRenderWindow_create(mode, "Window", sfResize | sfClose, NULL);
-    Player *player;
+    Player *player = malloc(sizeof(Player));
 
-    while (sfWindow_isOpen(window)) {
+    init_player(player);
+
+    while (sfRenderWindow_isOpen(window)) {
         events(window);
     }
-    init_player(player);
+
+    free(player);
     return 0;
 }
