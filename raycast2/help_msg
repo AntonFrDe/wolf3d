@@ -1,0 +1,18 @@
+WOLF 3D is a first person 3d shooting game using
+raycasting technologie to display 3d using 2d engine
+
+USGAGE :
+    ./woke3D [map]
+In the case before map is a map of 0 and 1s, the map must be a
+rectangle and each point represent a part of the map, if the point
+is a 1 the point is a wall and if he is 0 there is no wall and 
+the player can go threw.
+
+EXEMPLE :
+    1111111111
+    1000000101
+    1010101111
+    1010101111
+    1010101111
+    1010101111
+    1111111111
