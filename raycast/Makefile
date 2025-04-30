@@ -21,7 +21,8 @@ SRC = angle_coor.c \
 	  line_create.c \
 	  main.c \
 	  print_vector.c \
-	  square_create.c
+	  square_create.c \
+	  ../Game/Menu/menu.c \
 
 OBJ = $(SRC:.c=.o)
 

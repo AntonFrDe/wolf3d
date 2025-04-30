@@ -10,6 +10,7 @@
 #include <SFML/System.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <SFML/Audio.h>
 
 #ifndef MY_H_
 #define pi 3.14159265358979323846
@@ -41,5 +42,7 @@ void draw_line(sfRenderWindow *window, sfVector2f point2, sfVector2f point1,
     sfColor color);
 sfVertexArray *create_quad(sfVector2f *point, sfColor color);
 map_t init_map(char *name);
+int display_menu(void);
+void display_settings(sfMusic *music, int *volume);
 
 #endif /* !MY_H_ */
