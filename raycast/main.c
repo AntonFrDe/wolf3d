@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 
     if (argc != 2)
         return 84;
-    sfMusic *music = sfMusic_createFromFile("../Game/Menu/Assets/halo_music.mp3");
+    sfMusic *music = sfMusic_createFromFile("../Game/Menu/Assets/halo_music.ogg");
     if (music != NULL) {
         sfMusic_setLoop(music, sfTrue);
         sfMusic_setVolume(music, volume);
