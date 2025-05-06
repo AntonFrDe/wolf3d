@@ -1,0 +1,9 @@
+./src/main/event.c:19: MAJOR:C-F3
+./src/main/init.c:18: MAJOR:C-F3
+./src/main/main.c:13: MAJOR:C-F5
+./src/main/main.c:41: MAJOR:C-F3
+./src/main/main.c:43: MAJOR:C-F3
+./src/update.c:15: MAJOR:C-F3
+./src/update.c:16: MAJOR:C-F3
+./src/weapon.c:22: MAJOR:C-F3
+./src/weapon.c:23: MAJOR:C-F3
