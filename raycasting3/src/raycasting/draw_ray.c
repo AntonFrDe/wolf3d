@@ -52,8 +52,8 @@ void draw_ray(game_t *game, raycast_t raycast, int i)
         ? game->video.height / distance
         : game->video.height / 0.01f;
     sfColor line_color = color_ray(raycast.hit, raycast.side);
-    sfVector2f start = {.x = i, .y = -len_line / 2 + game->video.height / 2};
-    sfVector2f end = {.x = i, .y = len_line / 2 + game->video.height / 2};
+    sfVector2f start = {.x = i, .y = -len_line + game->video.height / 2};
+    sfVector2f end = {.x = i, .y = len_line + game->video.height / 2};
 
     if (start.y < 0)
         start.y = 0;

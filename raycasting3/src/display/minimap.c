@@ -5,7 +5,7 @@
 ** minimap
 */
 
-/*
+
 #include "../../include/wolf.h"
 
 #define TILE_SIZE 10
@@ -57,4 +57,3 @@ void draw_minimap(game_t *game)
     line[1].color = sfRed;
     sfRenderWindow_drawPrimitives(game->window, line, 2, sfLines, NULL);
 }
-*/

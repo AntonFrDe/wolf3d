@@ -28,6 +28,6 @@ void event_handling(game_t *game);
 void print_2fv(sfVector2f vec);
 void print_2iv(sfVector2i vec);
 void print_raycast(char *str, raycast_t ray);
-//void draw_minimap(game_t *game);
+void draw_minimap(game_t *game);
 
 #endif /* !WOLF_H_ */
