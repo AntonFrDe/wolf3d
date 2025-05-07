@@ -24,6 +24,10 @@ RAYCAST =	cast_ray.c	\
 TOOLS =	remove_bsn.c	\
 		print_vector.c	\
 
+MENU =	main_menu.c	\
+		menu_settings.c	\
+		settings_mouse_events.c	\
+
 SRC :=  $(addprefix src/, $(SRC))
 
 STRUCT := $(addprefix src/init_struct/, $(STRUCT))
@@ -34,6 +38,8 @@ RAYCAST := $(addprefix src/raycasting/, $(RAYCAST))
 
 TOOLS := $(addprefix tools/, $(TOOLS))
 
+MENU := $(addprefix ../Game/Menu/, $(MENU))
+
 CFLAGS += -g3 -Wall -Wextra -Iinclude
 
 OBJ_SRC	=	$(SRC:.c=.o)
@@ -41,8 +47,9 @@ OBJ_STRUCT	=	$(STRUCT:.c=.o)
 OBJ_DISPLAY = $(DISPLAY:.c=.o)
 OBJ_RAYCAST = $(RAYCAST:.c=.o)
 OBJ_TOOLS	=	$(TOOLS:.c=.o)
+OBJ_MENU	=	$(MENU:.c=.o)
 
-OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST) $(OBJ_TOOLS)
+OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST) $(OBJ_TOOLS) $(OBJ_MENU)
 CSFML = -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 

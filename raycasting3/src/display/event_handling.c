@@ -5,7 +5,8 @@
 ** event_handling
 */
 
-#include "wolf.h"
+#include "../../include/wolf.h"
+#include "../../include/struct.h"
 #include <math.h>
 
 static void move_forward(game_t *game, float speed)
