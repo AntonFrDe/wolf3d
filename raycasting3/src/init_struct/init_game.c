@@ -20,5 +20,6 @@ game_t *init_game(void)
     game->window = sfRenderWindow_create(game->video, "wolf3d",
         sfClose | sfResize, NULL);
     game->event = malloc(sizeof(sfEvent));
+    game->time = sfClock_create();
     return game;
 }

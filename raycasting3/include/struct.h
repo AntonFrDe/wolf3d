@@ -26,6 +26,7 @@ typedef struct game_s {
     sfEvent *event;
     sfVideoMode video;
     sfVector2f map_size;
+    sfClock *time;
 } game_t;
 
 typedef struct raycast_s {
