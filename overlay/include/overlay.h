@@ -16,6 +16,7 @@
 	#define WEAPON_H_
 	#include <SFML/Graphics.h>
 	#include "ammo.h"
+    #include <SFML/Audio.h>
 
 typedef struct weapon_s {
     sfTexture *texture;

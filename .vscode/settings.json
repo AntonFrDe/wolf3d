@@ -5,6 +5,8 @@
         "my.h": "c",
         "audio.h": "c",
         "struct.h": "c",
-        "graphics.h": "c"
+        "graphics.h": "c",
+        "context.h": "c",
+        "complex": "c"
     }
 }

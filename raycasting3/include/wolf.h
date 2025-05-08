@@ -14,12 +14,13 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
+    #include "../../overlay/include/context.h"
     #define WOLF_H_
 int main(void);
 player_t init_player(void);
 game_t *init_game(void);
 int **make_map(game_t *game);
-void display_game(game_t *game);
+void display_game(game_t *game, context_t *ctx, sfSound *reload, sfSound *fire);
 void cast_ray(game_t *game);
 raycast_t calc_dda(game_t *game, raycast_t raycast);
 void draw_ray(game_t *game, raycast_t raycast, int i);

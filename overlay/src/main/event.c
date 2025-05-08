@@ -9,13 +9,13 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 
-void handle_events(context_t *ctx, sfEvent event,
+void handle_events(context_t *ctx, sfEvent *event,
     sfSound *fire, sfSound *reload)
 {
-    if (event.type == sfEvtClosed)
+    if (event->type == sfEvtClosed)
         sfRenderWindow_close(ctx->window);
-    if (event.type == sfEvtMouseButtonPressed
-        && event.mouseButton.button == sfMouseLeft) {
+    if (event->type == sfEvtMouseButtonPressed
+        && event->mouseButton.button == sfMouseLeft) {
         if (!ctx->weapon.is_shooting && !ctx->weapon.is_reloading && ctx->ammo.ammo > 0) {
             ctx->weapon.is_shooting = 1;
             ctx->weapon.shoot_offset = 0;
@@ -24,7 +24,7 @@ void handle_events(context_t *ctx, sfEvent event,
             sfSound_play(fire);
         }
     }
-    if (event.type == sfEvtKeyPressed && event.key.code == sfKeyR) {
+    if (event->type == sfEvtKeyPressed && event->key.code == sfKeyR) {
         if (!ctx->weapon.is_reloading && ctx->ammo.ammo < 32) {
             ctx->weapon.is_reloading = 1;
             ctx->weapon.reload_offset = 0;

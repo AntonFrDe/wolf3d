@@ -28,6 +28,15 @@ MENU =	main_menu.c	\
 		menu_settings.c	\
 		settings_mouse_events.c	\
 
+OVERLAY =	main/main.c	\
+			main/display.c	\
+			main/event.c	\
+			main/init.c	\
+			ammo.c	\
+			hud.c	\
+			update.c	\
+			weapon.c	\
+
 SRC :=  $(addprefix src/, $(SRC))
 
 STRUCT := $(addprefix src/init_struct/, $(STRUCT))
@@ -40,6 +49,8 @@ TOOLS := $(addprefix tools/, $(TOOLS))
 
 MENU := $(addprefix ../Game/Menu/, $(MENU))
 
+OVERLAY := $(addprefix ../overlay/src/, $(OVERLAY))
+
 CFLAGS += -g3 -Wall -Wextra -Iinclude
 
 OBJ_SRC	=	$(SRC:.c=.o)
@@ -48,8 +59,9 @@ OBJ_DISPLAY = $(DISPLAY:.c=.o)
 OBJ_RAYCAST = $(RAYCAST:.c=.o)
 OBJ_TOOLS	=	$(TOOLS:.c=.o)
 OBJ_MENU	=	$(MENU:.c=.o)
+OBJ_OVERLAY	=	$(OVERLAY:.c=.o)
 
-OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST) $(OBJ_TOOLS) $(OBJ_MENU)
+OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST) $(OBJ_TOOLS) $(OBJ_MENU) $(OBJ_OVERLAY)
 CSFML = -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 

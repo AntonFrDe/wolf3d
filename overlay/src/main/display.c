@@ -10,7 +10,7 @@
 
 void display_all(context_t *ctx)
 {
-    sfRenderWindow_clear(ctx->window, sfBlack);
+    // sfRenderWindow_clear(ctx->window, sfBlack);
     sfRenderWindow_drawSprite(ctx->window, ctx->weapon.sprite, NULL);
     draw_hud(ctx->window, &ctx->hud);
     sfRenderWindow_drawText(ctx->window, ctx->ammo.text, NULL);

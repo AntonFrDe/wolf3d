@@ -13,7 +13,7 @@ ammo_display_t create_ammo_display(void)
     ammo_display_t display;
 
     display.ammo = 32;
-    display.font = sfFont_createFromFile("src/assets/Starcraft Normal.ttf");
+    display.font = sfFont_createFromFile("../overlay/src/assets/Starcraft Normal.ttf");
     display.text = sfText_create();
     sfText_setFont(display.text, display.font);
     sfText_setCharacterSize(display.text, 40);

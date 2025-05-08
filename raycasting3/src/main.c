@@ -11,6 +11,10 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 #include <stdio.h>
+#include "../../overlay/include/overlay.h"
+#include "../../overlay/include/context.h"
+#include "../../overlay/include/hud.h"
+#include "../../overlay/include/ammo.h"
 
 void destroy_app(app_t *app)
 {
@@ -46,9 +50,18 @@ int process_game_state(switch_window_state_t *state, app_t *app, game_t *game)
 {
     if (*state != STATE_GAME)
         return 0;
-    display_game(game);
-    free(game);
+    context_t ctx_overlay;
+    sfSoundBuffer *fire_buf = sfSoundBuffer_createFromFile("../overlay/src/assets/19103_b.wav");
+    sfSound *fire = sfSound_create();
+    sfSoundBuffer *reload_buf = sfSoundBuffer_createFromFile("../overlay/src/assets/br_reload_full1.wav");
+    sfSound *reload = sfSound_create();
+    sfSound_setBuffer(fire, fire_buf);
+    sfSound_setBuffer(reload, reload_buf);
+    init_all(&ctx_overlay, game);
     sfMusic_destroy(app->music);
+    display_game(game, &ctx_overlay, reload, fire);
+    destroy_all(&ctx_overlay, fire, fire_buf, reload, reload_buf);
+    free(game);
     return 0;
 }
 
