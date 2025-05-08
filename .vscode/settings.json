@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "labyrinth": "plaintext",
+        "wolf.h": "c",
+        "my.h": "c",
+        "audio.h": "c",
+        "struct.h": "c",
+        "graphics.h": "c"
+    }
+}

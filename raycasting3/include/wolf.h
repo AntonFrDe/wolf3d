@@ -29,5 +29,14 @@ void print_2fv(sfVector2f vec);
 void print_2iv(sfVector2i vec);
 void print_raycast(char *str, raycast_t ray);
 void draw_minimap(game_t *game);
+switch_window_state_t display_menu(sfRenderWindow *window, sfFont *font, sfView *view);
+switch_window_state_t display_settings(app_context_t *ctx, sfFont *font, sfView *view, sfRenderWindow *window);
+void resize_background(menu_t *menu);
+sfText *create_menu_text(sfFont *menu_text_font, const char *str,
+    sfVector2f pos);
+switch_window_state_t handle_mouse_events(app_context_t *ctx,
+        text_elemets_t *texts, input_context_t *input, menu_t *menu);
+void resize_settings_background(menu_t *menu);
+void destroy_texts(text_elemets_t *texts);
 
 #endif /* !WOLF_H_ */

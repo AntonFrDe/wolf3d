@@ -5,7 +5,7 @@
 ** init_map
 */
 
-#include "wolf.h"
+#include "../../include/wolf.h"
 #include <stdio.h>
 
 static int check_line(char *line)
