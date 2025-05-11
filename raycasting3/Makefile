@@ -62,8 +62,7 @@ OBJ_TOOLS	=	$(TOOLS:.c=.o)
 OBJ_EVENT	=	$(EVENT:.c=.o)
 OBJ_OVERLAY	=	$(OVERLAY:.c=.o)
 
-OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST)
-	$(OBJ_TOOLS) $(OBJ_MENU) $(OBJ_EVENT) $(OBJ_OVERLAY)
+OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST) $(OBJ_TOOLS) $(OBJ_MENU) $(OBJ_EVENT) $(OBJ_OVERLAY)
 CSFML = -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 
