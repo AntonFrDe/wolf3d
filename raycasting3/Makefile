@@ -12,10 +12,15 @@ SRC	=	main.c	\
 STRUCT =	init_player.c	\
 			init_game.c	\
 			init_map.c	\
+			init_app.c	\
+			init_overlay.c	\
 
 DISPLAY =	display_game.c	\
-			event_handling.c	\
 			minimap.c	\
+			display_menu.c	\
+			display_settings.c	\
+			play_game.c	\
+			display_hud.c	\
 
 RAYCAST =	cast_ray.c	\
 			dda.c	\
@@ -24,9 +29,14 @@ RAYCAST =	cast_ray.c	\
 TOOLS =	remove_bsn.c	\
 		print_vector.c	\
 
-MENU =	main_menu.c	\
-		menu_settings.c	\
+EVENT =	event_handling.c	\
 		settings_mouse_events.c	\
+		event.c	\
+
+OVERLAY =	ammo.c	\
+			hud.c	\
+			update.c	\
+			weapon.c	\
 
 SRC :=  $(addprefix src/, $(SRC))
 
@@ -38,7 +48,9 @@ RAYCAST := $(addprefix src/raycasting/, $(RAYCAST))
 
 TOOLS := $(addprefix tools/, $(TOOLS))
 
-MENU := $(addprefix ../Game/Menu/, $(MENU))
+EVENT := $(addprefix src/event/, $(EVENT))
+
+OVERLAY := $(addprefix src/overlay/, $(OVERLAY))
 
 CFLAGS += -g3 -Wall -Wextra -Iinclude
 
@@ -47,9 +59,11 @@ OBJ_STRUCT	=	$(STRUCT:.c=.o)
 OBJ_DISPLAY = $(DISPLAY:.c=.o)
 OBJ_RAYCAST = $(RAYCAST:.c=.o)
 OBJ_TOOLS	=	$(TOOLS:.c=.o)
-OBJ_MENU	=	$(MENU:.c=.o)
+OBJ_EVENT	=	$(EVENT:.c=.o)
+OBJ_OVERLAY	=	$(OVERLAY:.c=.o)
 
-OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST) $(OBJ_TOOLS) $(OBJ_MENU)
+OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST)
+	$(OBJ_TOOLS) $(OBJ_MENU) $(OBJ_EVENT) $(OBJ_OVERLAY)
 CSFML = -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 
@@ -63,7 +77,7 @@ debug:	$(OBJ)
 
 clean:
 		rm -f $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY)
-		rm -f $(OBJ_RAYCAST) $(OBJ_TOOLS)
+		rm -f $(OBJ_RAYCAST) $(OBJ_TOOLS) $(OBJ_OVERLAY)
 		rm -f coding-style-reports.log
 		rm -f output
 		rm -f $(OBJ)

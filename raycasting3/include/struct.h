@@ -12,24 +12,14 @@
 #include <SFML/Audio.h>
 
 #ifndef STRUCT_H_
+    #include "overlay.h"
     #define STRUCT_H_
-
 typedef struct player_s {
     sfVector2f loc;
     sfVector2f dir;
     sfVector2f plane;
     int angle;
 } player_t;
-
-typedef struct game_s {
-    player_t player;
-    int **map;
-    sfRenderWindow *window;
-    sfEvent *event;
-    sfVideoMode video;
-    sfVector2f map_size;
-    sfClock *time;
-} game_t;
 
 typedef struct raycast_s {
     int hit;
@@ -95,5 +85,19 @@ typedef struct {
     sfEvent *event;
     sfVector2f mouse_pos;
 } input_context_t;
+
+typedef struct game_s {
+    player_t player;
+    int **map;
+    sfRenderWindow *window;
+    sfEvent *event;
+    sfVideoMode video;
+    sfVector2f map_size;
+    sfClock *time;
+    app_t app;
+    switch_window_state_t state;
+    context_t context;
+} game_t;
+
 
 #endif /* !STRUCT_H_ */

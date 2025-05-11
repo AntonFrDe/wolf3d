@@ -62,6 +62,7 @@
     "graphics.h": "c",
     "system.h": "c",
     "all_code": "c",
-    "struct.h": "c"
+    "struct.h": "c",
+    "functional": "c"
   }
 }

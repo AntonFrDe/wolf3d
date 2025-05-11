@@ -57,13 +57,14 @@ static void rotate_player(game_t *game, float angle)
     game->player.plane.y = old_plane_x * sin_a + game->player.plane.y * cos_a;
 }
 
-void event_handling(game_t *game)
+switch_window_state_t event_handling(game_t *game)
 {
     const float move_speed = 0.05f;
     const float rot_speed = 0.05f;
 
-    if (sfKeyboard_isKeyPressed(sfKeyEscape))
-        sfRenderWindow_close(game->window);
+    if (game->event->type == sfEvtKeyReleased &&
+        game->event->key.code == sfKeyEscape)
+        return STATE_MENU;
     if (sfKeyboard_isKeyPressed(sfKeyZ))
         move_forward(game, move_speed);
     if (sfKeyboard_isKeyPressed(sfKeyS))
@@ -76,4 +77,5 @@ void event_handling(game_t *game)
         rotate_player(game, rot_speed);
     if (sfKeyboard_isKeyPressed(sfKeyRight))
         rotate_player(game, -rot_speed);
+    return STATE_GAME;
 }
