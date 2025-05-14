@@ -35,7 +35,7 @@ void draw_txtr(game_t *game, raycast_t raycast, int i)
         : game->player.loc.x + distance * raycast.ray_dir.x;
     int texX;
     
-    wallX -= floorf(wallX); // garder uniquement la fraction (entre 0.0 et 1.0)
+    wallX -= floorf(wallX);
     texX = (int)(wallX * TEX_SIZE);
     raycast.len = distance > 0
         ? game->video.height / distance
