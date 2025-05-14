@@ -26,7 +26,7 @@ void cast_ray(game_t *game);
 raycast_t calc_dda(game_t *game, raycast_t raycast);
 void draw_ray(game_t *game, raycast_t raycast, int i);
 char *remove_bsn(char *str);
-switch_window_state_t event_handling(game_t *game);
+void event_handling(game_t *game);
 void print_2fv(sfVector2f vec);
 void print_2iv(sfVector2i vec);
 void print_raycast(char *str, raycast_t ray);
@@ -46,5 +46,7 @@ void display_hud(game_t *game);
 context_t init_overlay(game_t *game);
 sfTexture **init_wall(sfTexture **wall);
 void draw_txtr(game_t *game, raycast_t raycast, int i);
+game_txtr_t init_game_texture(game_t *game);
+void handle_events(game_t *game);
 
 #endif /* !WOLF_H_ */

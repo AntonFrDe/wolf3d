@@ -12,7 +12,6 @@
 
 #ifndef WEAPON_H_
     #define WEAPON_H_
-
 typedef struct weapon_s {
     sfTexture *texture;
     sfSprite *sprite;
@@ -56,6 +55,4 @@ weapon_t create_weapon(const char *filepath,
     sfVector2u window_size, sfVector2f scale, sfVector2f offset);
 void update_weapon(weapon_t *weapon, ammo_display_t *ammo,
     sfVector2u window_size);
-void handle_events(context_t *ctx, sfEvent event,
-    sfSound *fire, sfSound *reload);
 #endif /* !WEAPON_H_ */

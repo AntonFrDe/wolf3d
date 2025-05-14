@@ -9,7 +9,6 @@
 
 sfTexture **init_wall(sfTexture **wall)
 {
-    wall = malloc(sizeof(sfTexture *) * 8);
     wall[0] = sfTexture_createFromFile("Assets/pics/wood.png", NULL);
     wall[1] = sfTexture_createFromFile("Assets/pics/mossy.png", NULL);
     wall[2] = sfTexture_createFromFile("Assets/pics/bluestone.png", NULL);

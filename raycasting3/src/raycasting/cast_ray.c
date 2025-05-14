@@ -52,9 +52,12 @@ void cast_ray(game_t *game)
 {
     raycast_t raycast;
 
+    sfRenderTexture_clear(game->gmtx.walltx, sfBlack);
+    sfRenderTexture_drawSprite(game->gmtx.walltx, game->gmtx.skybg, NULL);
     for (int i = 0; i != (int)game->video.width; i++) {
         raycast = init_value(game, i);
         raycast = calc_dda(game, raycast);
         draw_txtr(game, raycast, i);
     }
+    sfRenderTexture_display(game->gmtx.walltx);
 }

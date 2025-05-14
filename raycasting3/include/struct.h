@@ -87,8 +87,15 @@ typedef struct input_context_s {
     sfVector2f mouse_pos;
 } input_context_t;
 
-typedef struct game_s {
+typedef struct game_txtr_s {
     sfTexture **wall;
+    sfSprite *skybg;
+    sfRenderTexture *walltx;
+    sfSprite *wallsp;
+} game_txtr_t;
+
+typedef struct game_s {
+    game_txtr_t gmtx;
     player_t player;
     int **map;
     sfRenderWindow *window;
@@ -99,7 +106,6 @@ typedef struct game_s {
     app_t app;
     switch_window_state_t state;
     context_t context;
-    sfSprite *skybg;
 } game_t;
 
 

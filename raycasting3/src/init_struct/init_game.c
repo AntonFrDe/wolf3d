@@ -8,16 +8,6 @@
 #include "../../include/wolf.h"
 #include <stdlib.h>
 
-static sfSprite *init_sky(void)
-{
-    sfTexture *tx = sfTexture_createFromFile("Assets/sky_bg.jpg", NULL);
-    sfSprite *sp = sfSprite_create();
-
-    sfSprite_setTexture(sp, tx, false);
-    sfSprite_setPosition(sp, (sfVector2f){.x = 0, .y = 0});
-    return sp;
-}
-
 game_t *init_game(void)
 {
     game_t *game = malloc(sizeof(game_t));
@@ -35,7 +25,5 @@ game_t *init_game(void)
     sfRenderWindow_setPosition(game->window, position);
     game->event = malloc(sizeof(sfEvent));
     game->time = sfClock_create();
-    game->wall = init_wall(game->wall);
-    game->skybg = init_sky();
     return game;
 }

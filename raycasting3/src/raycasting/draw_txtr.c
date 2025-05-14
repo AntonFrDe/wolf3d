@@ -17,12 +17,12 @@ static void draw_wall(game_t *game, raycast_t raycast, int i, int texX)
     rect.left = texX;
     rect.top = 0;
     rect.width = 1;
-    sfSprite_setTexture(sp, game->wall[raycast.hit - 1], false);
+    sfSprite_setTexture(sp, game->gmtx.wall[raycast.hit - 1], false);
     sfSprite_setTextureRect(sp, rect);
     sfSprite_setPosition(sp, (sfVector2f){.x = i, game->video.height / 2 - raycast.len / 2});
     sfSprite_setScale(sp, (sfVector2f){.x = 1 , .y = raycast.len / 64});
-    sfRenderWindow_drawSprite(game->window, sp, NULL);
-    if (raycast.side == 1 && !sfKeyboard_isKeyPressed(sfKeyF))
+    sfRenderTexture_drawSprite(game->gmtx.walltx, sp, NULL);
+    if (raycast.side == 1 || game->context.weapon.is_flash == 1)
         draw_ray(game, raycast, i);
     sfSprite_destroy(sp);
 }
