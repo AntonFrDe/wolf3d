@@ -99,6 +99,7 @@ typedef struct game_s {
     app_t app;
     switch_window_state_t state;
     context_t context;
+    sfSprite *skybg;
 } game_t;
 
 

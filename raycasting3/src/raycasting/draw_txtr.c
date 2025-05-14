@@ -22,6 +22,8 @@ static void draw_wall(game_t *game, raycast_t raycast, int i, int texX)
     sfSprite_setPosition(sp, (sfVector2f){.x = i, game->video.height / 2 - raycast.len / 2});
     sfSprite_setScale(sp, (sfVector2f){.x = 1 , .y = raycast.len / 64});
     sfRenderWindow_drawSprite(game->window, sp, NULL);
+    if (raycast.side == 1 && !sfKeyboard_isKeyPressed(sfKeyF))
+        draw_ray(game, raycast, i);
     sfSprite_destroy(sp);
 }
 

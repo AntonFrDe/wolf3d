@@ -49,9 +49,9 @@ void draw_ray(game_t *game, raycast_t raycast, int i)
         ? raycast.side_dist.x - raycast.delta_dist.x
         : raycast.side_dist.y - raycast.delta_dist.y;
     int len_line = distance > 0
-        ? game->video.height / distance
-        : game->video.height / 0.01f;
-    sfColor line_color = color_ray(raycast.hit, raycast.side);
+        ? game->video.height / distance / 2
+        : game->video.height / 0.01f / 2;
+    sfColor line_color = {.a = 100, .r = 0, .g = 0, .b = 0};
     sfVector2f start = {.x = i, .y = -len_line + game->video.height / 2};
     sfVector2f end = {.x = i, .y = len_line + game->video.height / 2};
 

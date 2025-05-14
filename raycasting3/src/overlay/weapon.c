@@ -26,5 +26,6 @@ weapon_t create_weapon(const char *filepath,
     weapon.shoot_offset = 0;
     weapon.is_reloading = 0;
     weapon.reload_offset = 0;
+    weapon.is_flash = 0;
     return weapon;
 }

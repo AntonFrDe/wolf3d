@@ -22,6 +22,7 @@ typedef struct weapon_s {
     float shoot_offset;
     int is_reloading;
     float reload_offset;
+    int is_flash;
 } weapon_t;
 
 typedef struct hud_s {
