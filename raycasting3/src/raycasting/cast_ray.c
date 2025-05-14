@@ -54,6 +54,7 @@ void cast_ray(game_t *game)
 
     sfRenderTexture_clear(game->gmtx.walltx, sfBlack);
     sfRenderTexture_drawSprite(game->gmtx.walltx, game->gmtx.skybg, NULL);
+    floor_cast(game);
     for (int i = 0; i != (int)game->video.width; i++) {
         raycast = init_value(game, i);
         raycast = calc_dda(game, raycast);

@@ -48,5 +48,6 @@ sfTexture **init_wall(sfTexture **wall);
 void draw_txtr(game_t *game, raycast_t raycast, int i);
 game_txtr_t init_game_texture(game_t *game);
 void handle_events(game_t *game);
+void floor_cast(game_t *game);
 
 #endif /* !WOLF_H_ */

@@ -92,7 +92,18 @@ typedef struct game_txtr_s {
     sfSprite *skybg;
     sfRenderTexture *walltx;
     sfSprite *wallsp;
+    sfImage *floor;
 } game_txtr_t;
+
+typedef struct floor_cast_s {
+    sfVector2f ray_dir0;
+    sfVector2f ray_dir1;
+    sfVector2f step;
+    sfVector2f floor;
+    sfVector2i tex_coords;
+    sfColor color;
+    float row_distance;
+} floor_cast_t;
 
 typedef struct game_s {
     game_txtr_t gmtx;

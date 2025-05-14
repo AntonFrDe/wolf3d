@@ -28,6 +28,7 @@ RAYCAST =	cast_ray.c	\
 			dda.c	\
 			draw_ray.c	\
 			draw_txtr.c	\
+			floor_cast.c	\
 
 TOOLS =	remove_bsn.c	\
 		print_vector.c	\
