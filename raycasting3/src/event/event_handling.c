@@ -60,10 +60,8 @@ static void rotate_player(game_t *game, float angle)
 static void mooving_func(game_t *game, int mouse_dir)
 {
     float move_speed = 0.1f;
-    const float rot_speed = 0.01f;
+    const float rot_speed = 0.1f;
 
-    if (mouse_dir != 0)
-        move_speed /= 10;
     if (sfKeyboard_isKeyPressed(sfKeyZ))
         move_forward(game, move_speed);
     if (sfKeyboard_isKeyPressed(sfKeyS))
@@ -83,9 +81,10 @@ switch_window_state_t event_handling(game_t *game)
     sfVector2i center = {.x = game->video.width / 2, .y = game->video.height / 2};
 
     if (game->event->type == sfEvtKeyReleased &&
-        game->event->key.code == sfKeyEscape)
+        game->event->key.code == sfKeyEscape) {
+        printf("hello\n");
         return STATE_MENU;
-    sfRenderWindow_setMouseCursorVisible(game->window, sfFalse);
+    }
     if (mouse_loc.x > center.x)
         mouse_dir = -1;
     if (mouse_loc.x < center.x)

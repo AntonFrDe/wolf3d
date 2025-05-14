@@ -24,31 +24,36 @@ static void draw_tile(sfRenderWindow *window, sfVector2f pos, sfColor color)
     sfRectangleShape_destroy(tile);
 }
 
+static void draw_wall(game_t *game, int x, int y)
+{
+    if (y < (int)game->map_size.y && x < (int)game->map_size.x) {
+        int tile = game->map[y][x];
+        sfColor color = sfColor_fromRGB(30, 30, 30);
+        if (tile == 1)
+            color = sfColor_fromRGB(200, 200, 200);
+        else if (tile == 2)
+            color = sfColor_fromRGB(255, 100, 100);
+        else if (tile == 3)
+            color = sfColor_fromRGB(200, 0, 200);
+        else if (tile == 4)
+            color = sfColor_fromRGB(50, 100, 200);
+        draw_tile(game->window,
+            (sfVector2f){x * TILE_SIZE + 180, game->video.height - y * TILE_SIZE - 100}, color);
+    }
+}
+
 void draw_minimap(game_t *game)
 {
-    for (int y = 0; y < (int)game->video.height / TILE_SIZE; y++) {
-        for (int x = 0; x < (int)game->video.width / TILE_SIZE; x++) {
-            if (y < (int)game->map_size.y && x < (int)game->map_size.x) {
-                int tile = game->map[y][x];
-                sfColor color = sfColor_fromRGB(30, 30, 30);
-                if (tile == 1)
-                    color = sfColor_fromRGB(200, 200, 200);
-                else if (tile == 2)
-                    color = sfColor_fromRGB(255, 100, 100);
-                else if (tile == 3)
-                    color = sfColor_fromRGB(200, 0, 200);
-                else if (tile == 4)
-                    color = sfColor_fromRGB(50, 100, 200);
-                draw_tile(game->window,
-                    (sfVector2f){x * TILE_SIZE, y * TILE_SIZE}, color);
-            }
-        }
-    }
     sfColor player_color = sfGreen;
-    float px = game->player.loc.x * TILE_SIZE;
-    float py = game->player.loc.y * TILE_SIZE;
+    float px = game->player.loc.x * TILE_SIZE + 180;
+    float py = game->video.height - game->player.loc.y * TILE_SIZE - 100;
+    //sfVertex line[2];
+    
+    for (int y = 0; y < (int)game->video.height / TILE_SIZE; y++)
+        for (int x = 0; x < (int)game->video.width / TILE_SIZE; x++)
+            draw_wall(game, x, y);
     draw_tile(game->window, (sfVector2f){px, py}, player_color);
-    sfVertex line[2];
+    /*
     line[0].position = (sfVector2f){px + TILE_SIZE / 2, py + TILE_SIZE / 2};
     line[0].color = sfRed;
     line[1].position = (sfVector2f){
@@ -56,4 +61,5 @@ void draw_minimap(game_t *game)
         py + game->player.dir.y * TILE_SIZE * 2 + TILE_SIZE / 2};
     line[1].color = sfRed;
     sfRenderWindow_drawPrimitives(game->window, line, 2, sfLines, NULL);
+    */
 }
