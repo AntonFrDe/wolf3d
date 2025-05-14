@@ -22,6 +22,7 @@ switch_window_state_t play_game(game_t *game)
         }
         display_hud(game);
         sfRenderWindow_display(game->window);
+        sfMouse_setPosition((sfVector2i){.x = game->video.width / 2, .y = game->video.height / 2}, game->window);
         sfSleep(sfMilliseconds(16));
     }
     return game->state;

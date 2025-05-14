@@ -57,14 +57,13 @@ static void rotate_player(game_t *game, float angle)
     game->player.plane.y = old_plane_x * sin_a + game->player.plane.y * cos_a;
 }
 
-switch_window_state_t event_handling(game_t *game)
+static void mooving_func(game_t *game, int mouse_dir)
 {
-    const float move_speed = 0.05f;
-    const float rot_speed = 0.05f;
+    float move_speed = 0.1f;
+    const float rot_speed = 0.01f;
 
-    if (game->event->type == sfEvtKeyReleased &&
-        game->event->key.code == sfKeyEscape)
-        return STATE_MENU;
+    if (mouse_dir != 0)
+        move_speed /= 10;
     if (sfKeyboard_isKeyPressed(sfKeyZ))
         move_forward(game, move_speed);
     if (sfKeyboard_isKeyPressed(sfKeyS))
@@ -73,9 +72,24 @@ switch_window_state_t event_handling(game_t *game)
         strafe(game, move_speed, -1);
     if (sfKeyboard_isKeyPressed(sfKeyD))
         strafe(game, move_speed, 1);
-    if (sfKeyboard_isKeyPressed(sfKeyLeft))
-        rotate_player(game, rot_speed);
-    if (sfKeyboard_isKeyPressed(sfKeyRight))
-        rotate_player(game, -rot_speed);
+    if (mouse_dir != 0)
+        rotate_player(game, rot_speed * mouse_dir);
+}
+
+switch_window_state_t event_handling(game_t *game)
+{
+    sfVector2i mouse_loc = sfMouse_getPositionRenderWindow(game->window);
+    int mouse_dir = 0;
+    sfVector2i center = {.x = game->video.width / 2, .y = game->video.height / 2};
+
+    if (game->event->type == sfEvtKeyReleased &&
+        game->event->key.code == sfKeyEscape)
+        return STATE_MENU;
+    sfRenderWindow_setMouseCursorVisible(game->window, sfFalse);
+    if (mouse_loc.x > center.x)
+        mouse_dir = -1;
+    if (mouse_loc.x < center.x)
+        mouse_dir = 1;
+    mooving_func(game, mouse_dir);
     return STATE_GAME;
 }
