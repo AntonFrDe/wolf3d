@@ -5,7 +5,7 @@
 ** ammo.c
 */
 
-#include "../include/wolf.h"
+#include "../../include/wolf.h"
 
 ammo_display_t create_ammo_display(void)
 {

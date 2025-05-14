@@ -55,6 +55,6 @@ void cast_ray(game_t *game)
     for (int i = 0; i != (int)game->video.width; i++) {
         raycast = init_value(game, i);
         raycast = calc_dda(game, raycast);
-        draw_ray(game, raycast, i);
+        draw_txtr(game, raycast, i);
     }
 }

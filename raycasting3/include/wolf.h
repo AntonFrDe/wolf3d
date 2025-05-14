@@ -15,6 +15,7 @@
     #include <stdlib.h>
     #include <string.h>
     #include "overlay.h"
+    #define TEX_SIZE 64
     #define WOLF_H_
 int main(void);
 player_t init_player(void);
@@ -43,5 +44,7 @@ app_t init_app(void);
 switch_window_state_t play_game(game_t *game);
 void display_hud(game_t *game);
 context_t init_overlay(game_t *game);
+sfTexture **init_wall(sfTexture **wall);
+void draw_txtr(game_t *game, raycast_t raycast, int i);
 
 #endif /* !WOLF_H_ */

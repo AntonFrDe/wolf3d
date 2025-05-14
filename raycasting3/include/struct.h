@@ -24,6 +24,7 @@ typedef struct player_s {
 typedef struct raycast_s {
     int hit;
     int side;
+    float len;
     sfVector2f cam;
     sfVector2f ray_dir;
     sfVector2f delta_dist;
@@ -31,14 +32,14 @@ typedef struct raycast_s {
     sfVector2f side_dist;
 } raycast_t;
 
-typedef enum {
+typedef enum switch_window_state_s {
     STATE_MENU,
     STATE_SETTINGS,
     STATE_GAME,
     STATE_EXIT
 } switch_window_state_t;
 
-typedef struct {
+typedef struct app_s {
     sfRenderWindow *window;
     sfFont *font;
     sfView *view;
@@ -48,7 +49,7 @@ typedef struct {
     int fullscreen_status;
 } app_t;
 
-typedef struct {
+typedef struct menu_s {
     sfText *start;
     sfText *load;
     sfText *settings;
@@ -61,7 +62,7 @@ typedef struct {
     sfSprite *settings_background_sprite;
 } menu_t;
 
-typedef struct {
+typedef struct app_context_s {
     sfRenderWindow **window;
     sfView **view;
     sfMusic *music;
@@ -71,7 +72,7 @@ typedef struct {
     int *fullscreen_status;
 } app_context_t;
 
-typedef struct {
+typedef struct text_elemets_s {
     sfText *title;
     sfText *volume;
     sfText *resolution;
@@ -81,12 +82,13 @@ typedef struct {
     int fullscreen_status;
 } text_elemets_t;
 
-typedef struct {
+typedef struct input_context_s {
     sfEvent *event;
     sfVector2f mouse_pos;
 } input_context_t;
 
 typedef struct game_s {
+    sfTexture **wall;
     player_t player;
     int **map;
     sfRenderWindow *window;

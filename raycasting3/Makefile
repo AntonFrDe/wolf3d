@@ -14,6 +14,7 @@ STRUCT =	init_player.c	\
 			init_map.c	\
 			init_app.c	\
 			init_overlay.c	\
+			init_wall.c	\
 
 DISPLAY =	display_game.c	\
 			minimap.c	\
@@ -25,6 +26,7 @@ DISPLAY =	display_game.c	\
 RAYCAST =	cast_ray.c	\
 			dda.c	\
 			draw_ray.c	\
+			draw_txtr.c	\
 
 TOOLS =	remove_bsn.c	\
 		print_vector.c	\

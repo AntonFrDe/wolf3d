@@ -25,5 +25,6 @@ game_t *init_game(void)
     sfRenderWindow_setPosition(game->window, position);
     game->event = malloc(sizeof(sfEvent));
     game->time = sfClock_create();
+    game->wall = init_wall(game->wall);
     return game;
 }

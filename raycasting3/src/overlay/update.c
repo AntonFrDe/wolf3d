@@ -5,7 +5,7 @@
 ** update.c
 */
 
-#include "../include/wolf.h"
+#include "../../include/wolf.h"
 
 static void reset_weapon_position(weapon_t *weapon, sfVector2u win_size)
 {

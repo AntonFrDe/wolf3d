@@ -5,7 +5,7 @@
 ** hud.c
 */
 
-#include "../include/wolf.h"
+#include "../../include/wolf.h"
 
 hud_t create_hud(const char *filepath)
 {

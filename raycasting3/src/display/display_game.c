@@ -25,7 +25,7 @@ static int display_scene(game_t *game)
 {
     switch (game->state) {
         case STATE_MENU:
-        printf("MENU\n");
+            printf("MENU\n");
             game->state = display_menu(game);
             break;
         case STATE_SETTINGS:

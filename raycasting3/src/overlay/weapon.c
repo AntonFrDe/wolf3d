@@ -5,7 +5,7 @@
 ** weapon.c
 */
 
-#include "../include/wolf.h"
+#include "../../include/wolf.h"
 
 weapon_t create_weapon(const char *filepath,
     sfVector2u window_size, sfVector2f scale, sfVector2f offset)
