@@ -8,12 +8,14 @@
 #include "../../include/wolf.h"
 #include "SFML/Graphics.h"
 
-static sfColor color_ray(game_t *game)
+static sfColor color_ray(game_t *game, int i)
 {
     sfColor color = sfBlack;
 
     color.a = 100;
-    if (game->context.weapon.is_flash == 1) {
+    if (game->context.weapon.is_flash == 1 &&
+        i > (int)game->video.width / 6 && 
+        i < (int)game->video.width / 6 * 5) {
         color.a = 25;
         color.r = 255;
         color.g = 255;
@@ -35,6 +37,18 @@ static void draw_line(sfRenderTexture *texture, sfVector2f start,
     sfRenderTexture_drawPrimitives(texture, line, 2, sfLines, NULL);
 }
 
+static void flashlight_ray(game_t *game, sfVector2f end, sfColor color, int i)
+{
+    if (game->context.weapon.is_flash == 1
+        && i > (int)game->video.width / 6 && 
+        i < (int)game->video.width / 6 * 5)
+        draw_line(game->gmtx.walltx,
+            (sfVector2f){
+                .x = game->video.width / 2, 
+                .y = game->video.height}
+                , end, color);
+}
+
 void draw_ray(game_t *game, raycast_t raycast, int i)
 {
     float distance = raycast.side == 0
@@ -43,7 +57,7 @@ void draw_ray(game_t *game, raycast_t raycast, int i)
     int len_line = distance > 0
         ? game->video.height / distance / 2
         : game->video.height / 0.01f / 2;
-    sfColor line_color = color_ray(game);
+    sfColor line_color = color_ray(game, i);
     sfVector2f start = {.x = i, .y = -len_line + game->video.height / 2};
     sfVector2f end = {.x = i, .y = len_line + game->video.height / 2};
 
@@ -51,5 +65,6 @@ void draw_ray(game_t *game, raycast_t raycast, int i)
         start.y = 0;
     if (end.y >= game->video.height)
         end.y = game->video.height - 1;
+    flashlight_ray(game, end, line_color, i);
     draw_line(game->gmtx.walltx, start, end, line_color);
 }

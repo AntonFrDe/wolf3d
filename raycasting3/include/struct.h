@@ -93,6 +93,7 @@ typedef struct game_txtr_s {
     sfRenderTexture *walltx;
     sfSprite *wallsp;
     sfImage *floor;
+    sfRenderTexture *flashlight;
 } game_txtr_t;
 
 typedef struct floor_cast_s {
