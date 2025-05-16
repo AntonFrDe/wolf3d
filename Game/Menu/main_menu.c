@@ -12,7 +12,7 @@
 #include "../../raycasting3/include/struct.h"
 #include <stdbool.h>
 
-void destroy_texts(text_elemets_t *texts)
+void destroy_texts_old(text_elemets_t *texts)
 {
     sfText_destroy(texts->title);
     sfText_destroy(texts->back);
@@ -41,7 +41,7 @@ void resize_background(menu_t *menu)
     }
 }
 
-sfText *create_menu_text(sfFont *menu_text_font, const char *str,
+sfText *create_menu_text_old(sfFont *menu_text_font, const char *str,
     sfVector2f pos)
 {
     sfText *text = sfText_create();

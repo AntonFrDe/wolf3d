@@ -83,7 +83,7 @@ static void handle_mouse_click_fullscreen_mode(app_context_t *ctx,
     }
 }
 
-switch_window_state_t handle_mouse_events(app_context_t *ctx,
+switch_window_state_t handle_mouse_events_old(app_context_t *ctx,
     text_elemets_t *texts, input_context_t *input, menu_t *menu)
 {
     sfFloatRect vol = sfText_getGlobalBounds(texts->volume);

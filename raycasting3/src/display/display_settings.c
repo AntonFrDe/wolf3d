@@ -35,7 +35,7 @@ void resize_settings_background(menu_t *menu)
 void init_settings_background(menu_t *menu)
 {
     menu->settings_background_texture =
-    sfTexture_createFromFile("../../Assets/halo_settings.jpg", NULL);
+    sfTexture_createFromFile("../Game/Menu/Assets/halo_settings.jpg", NULL);
     menu->settings_background_sprite = sfSprite_create();
     sfSprite_setTexture(menu->settings_background_sprite,
         menu->settings_background_texture, sfTrue);
@@ -161,7 +161,6 @@ static switch_window_state_t display_settings_loop(app_context_t *ctx,
     while (sfRenderWindow_pollEvent(*ctx->window, event)) {
         state = handle_event_loop(ctx, texts, event, menu);
         if (state != STATE_SETTINGS) {
-            destroy_texts(texts);
             return state;
         }
     }
@@ -185,5 +184,5 @@ switch_window_state_t display_settings(app_context_t *ctx, game_t *game)
         sfRenderWindow_display(game->window);
     }
     destroy_texts(&texts);
-    return STATE_SETTINGS;
+    return game->state;
 }

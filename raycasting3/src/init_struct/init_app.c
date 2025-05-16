@@ -38,5 +38,6 @@ app_t init_app(void)
     init_view(&app);
     init_music(&app);
     app.fullscreen_status = 0;
+    app.res_index = 0;
     return app;
 }
