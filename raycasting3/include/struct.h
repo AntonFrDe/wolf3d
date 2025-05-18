@@ -36,7 +36,8 @@ typedef enum switch_window_state_s {
     STATE_MENU,
     STATE_SETTINGS,
     STATE_GAME,
-    STATE_EXIT
+    STATE_EXIT,
+    STATE_MENU_IN_GAME
 } switch_window_state_t;
 
 typedef struct app_s {
@@ -80,6 +81,8 @@ typedef struct text_elemets_s {
     sfText *fullscreen;
     sfText *save;
     int fullscreen_status;
+    sfText *play;
+    sfText *exit;
 } text_elemets_t;
 
 typedef struct input_context_s {

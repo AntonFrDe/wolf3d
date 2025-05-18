@@ -23,6 +23,7 @@ DISPLAY =	display_game.c	\
 			display_settings.c	\
 			play_game.c	\
 			display_hud.c	\
+			escape_menu_in_game.c \
 
 RAYCAST =	cast_ray.c	\
 			dda.c	\

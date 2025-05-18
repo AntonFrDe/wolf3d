@@ -1,9 +1,10 @@
 /*
 ** EPITECH PROJECT, 2025
-** raycasting3
+** G-ING-210-TLS-2-1-wolf3d-victor.delannoy
 ** File description:
 ** display_game
 */
+
 
 #include "../../include/wolf.h"
 
@@ -21,6 +22,21 @@ static switch_window_state_t context_setting(game_t *game)
     return display_settings(&ctx, game);
 }
 
+static switch_window_state_t context_menu_in_game(game_t *game)
+{
+    app_context_t ctx;
+
+    ctx.window = &game->window;
+    ctx.view = &game->app.view;
+    ctx.music = game->app.music;
+    ctx.volume = &game->app.volume;
+    ctx.res_index = &game->app.res_index;
+    ctx.is_fullscreen = false;
+    ctx.fullscreen_status = &game->app.fullscreen_status;
+    game->state = display_menu_in_game(&ctx, game);
+    return game->state;
+}
+
 static int display_scene(game_t *game)
 {
     switch (game->state) {
@@ -31,6 +47,10 @@ static int display_scene(game_t *game)
         case STATE_SETTINGS:
             printf("SETTINGS\n");
             game->state = context_setting(game);
+            break;
+        case STATE_MENU_IN_GAME:
+            printf("MENU IN GAME\n");
+            context_menu_in_game(game);
             break;
         case STATE_GAME:
             printf("GAME\n");

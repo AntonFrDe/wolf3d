@@ -15,7 +15,7 @@ static void handle_events_loop(game_t *game)
             game->state = STATE_EXIT;
         if (game->event->type == sfEvtKeyReleased &&
             game->event->key.code == sfKeyEscape)
-            game->state = STATE_MENU;
+            game->state = STATE_MENU_IN_GAME;
         handle_events(game);
     }
 }
