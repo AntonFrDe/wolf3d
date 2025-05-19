@@ -50,5 +50,6 @@ game_txtr_t init_game_texture(game_t *game);
 void handle_events(game_t *game);
 void floor_cast(game_t *game);
 switch_window_state_t display_menu_in_game(app_context_t *ctx, game_t *game);
+int key_evt(sfEvent event, sfKeyCode key, int pressed);
 
 #endif /* !WOLF_H_ */

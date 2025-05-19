@@ -33,6 +33,7 @@ RAYCAST =	cast_ray.c	\
 
 TOOLS =	remove_bsn.c	\
 		print_vector.c	\
+		key_event.c	\
 
 EVENT =	event_handling.c	\
 		settings_mouse_events.c	\

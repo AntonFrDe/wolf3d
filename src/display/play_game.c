@@ -8,14 +8,13 @@
 #include "../../include/wolf.h"
 static void handle_events_loop(game_t *game)
 {
-    if (sfRenderWindow_pollEvent(game->window, game->event))
-        event_handling(game);
     while (sfRenderWindow_pollEvent(game->window, game->event)) {
         if (game->event->type == sfEvtClosed)
             game->state = STATE_EXIT;
         if (game->event->type == sfEvtKeyReleased &&
             game->event->key.code == sfKeyEscape)
             game->state = STATE_MENU_IN_GAME;
+        event_handling(game);
         handle_events(game);
     }
 }
@@ -48,7 +47,7 @@ switch_window_state_t play_game(game_t *game)
         handle_events_loop(game);
         update_game(game);
         render_game(game);
-        sfSleep(sfMilliseconds(16));
+        sfSleep(sfMilliseconds(1));
     }
     sfRenderWindow_setMouseCursorVisible(game->window, sfTrue);
     return game->state;

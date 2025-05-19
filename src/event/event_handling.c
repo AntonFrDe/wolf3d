@@ -48,13 +48,13 @@ static void mooving_func(game_t *game)
 {
     float move_speed = 0.1f;
 
-    if (sfKeyboard_isKeyPressed(sfKeyZ))
+    if (key_evt(*game->event, sfKeyZ, 1))
         move_forward(game, move_speed);
-    if (sfKeyboard_isKeyPressed(sfKeyS))
+    if (key_evt(*game->event, sfKeyS, 1))
         move_backward(game, move_speed);
-    if (sfKeyboard_isKeyPressed(sfKeyQ))
+    if (key_evt(*game->event, sfKeyQ, 1))
         strafe(game, move_speed, -1);
-    if (sfKeyboard_isKeyPressed(sfKeyD))
+    if (key_evt(*game->event, sfKeyD, 1))
         strafe(game, move_speed, 1);
 }
 

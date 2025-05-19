@@ -8,8 +8,8 @@
 #include <SFML/Graphics.h>
 #include <SFML/Audio.h>
 #include <stdio.h>
-#include "../../raycasting3/include/wolf.h"
-#include "../../raycasting3/include/struct.h"
+#include "../../include/wolf.h"
+#include "../../include/struct.h"
 #include <stdbool.h>
 
 static void render_menu_fillcolor(text_elemets_t *texts)
