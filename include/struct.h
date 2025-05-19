@@ -90,12 +90,18 @@ typedef struct input_context_s {
     sfVector2f mouse_pos;
 } input_context_t;
 
+typedef struct wall_tx_s {
+    sfTexture *tx;
+    int size;
+} wall_tx_t;
+
 typedef struct game_txtr_s {
     sfTexture **wall;
     sfSprite *skybg;
     sfRenderTexture *walltx;
     sfSprite *wallsp;
     sfImage *floor;
+    wall_tx_t *wtx;
     sfRenderTexture *flashlight;
 } game_txtr_t;
 
