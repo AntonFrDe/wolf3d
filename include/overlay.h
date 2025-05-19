@@ -50,7 +50,6 @@ typedef struct context_s {
 hud_t create_hud(const char *filepath);
 void draw_hud(sfRenderWindow *window, hud_t *hud);
 void destroy_hud(hud_t *hud);
-
 weapon_t create_weapon(const char *filepath,
     sfVector2u window_size, sfVector2f scale, sfVector2f offset);
 void update_weapon(weapon_t *weapon, ammo_display_t *ammo,
