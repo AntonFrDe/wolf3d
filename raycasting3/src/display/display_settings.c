@@ -151,6 +151,9 @@ static switch_window_state_t handle_event_loop(app_context_t *ctx,
         sfRenderWindow_mapPixelToCoords(*ctx->window, px, *ctx->view);
         return handle_mouse_events(ctx, texts, &input, menu);
     }
+    if (event->type == sfEvtKeyReleased && event->key.code == sfKeyX) {
+        return STATE_EXIT;
+    }
     return STATE_SETTINGS;
 }
 

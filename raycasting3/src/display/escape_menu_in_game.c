@@ -192,6 +192,10 @@ static int handle_event(sfEvent event, app_context_t *ctx, game_t *game,
         game->state = STATE_MENU;
         return 0;
     }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyX) {
+        game->state = STATE_EXIT;
+        return 0;
+    }
     if (event.type == sfEvtResized)
         resize_everything_in_window(event, ctx, menu);
     return 1;
