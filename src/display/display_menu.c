@@ -135,6 +135,9 @@ static switch_window_state_t handle_menu_events_condition(menu_t *menu,
         if (sfFloatRect_contains(&load_bounds, pos.x, pos.y))
             printf("Game loaded!\n");
     }
+    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyX) {
+        return STATE_EXIT;
+    }
     return STATE_MENU;
 }
 
