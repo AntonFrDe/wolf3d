@@ -9,7 +9,7 @@
 
 wall_tx_t *init_walltx(game_txtr_t game_tx)
 {
-    game_tx.wtx = malloc(sizeof(wall_tx_t) * 2);
+    game_tx.wtx = malloc(sizeof(wall_tx_t) * 5);
 
     game_tx.wtx[0].size = 1024;
     game_tx.wtx[0].tx = sfTexture_createFromFile("Assets/pics/Bwall.png", NULL);
