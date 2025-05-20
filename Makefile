@@ -14,7 +14,6 @@ STRUCT =	init_player.c	\
 			init_map.c	\
 			init_app.c	\
 			init_overlay.c	\
-			init_wall.c	\
 			init_game_texture.c	\
 
 DISPLAY =	display_game.c	\

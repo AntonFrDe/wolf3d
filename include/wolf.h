@@ -44,7 +44,6 @@ app_t init_app(void);
 switch_window_state_t play_game(game_t *game);
 void display_hud(game_t *game);
 context_t init_overlay(game_t *game);
-sfTexture **init_wall(sfTexture **wall);
 void draw_txtr(game_t *game, raycast_t raycast, int i);
 game_txtr_t init_game_texture(game_t *game);
 void handle_events(game_t *game);

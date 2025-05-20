@@ -25,14 +25,16 @@ wall_tx_t *init_walltx(game_txtr_t game_tx)
 game_txtr_t init_game_texture(game_t *game)
 {
     game_txtr_t game_tx;
-    sfTexture *tx = sfTexture_createFromFile("Assets/sky.jpg", NULL);
+    sfTexture *tx = sfTexture_createFromFile("Assets/sky_bg.jpg", NULL);
+    sfIntRect rect = {0, 0, 0, 0};
 
-    game_tx.wall = malloc(sizeof(sfTexture *) * 8);
-    game_tx.wall = init_wall(game_tx.wall);
-    game_tx.wtx = malloc(sizeof(wall_tx_t) * 2);
+    rect.height = game->video.height / 2;
+    rect.width = game->video.width;
     game_tx.wtx = init_walltx(game_tx);
     game_tx.skybg = sfSprite_create();
+    sfTexture_setRepeated(tx, sfTrue);
     sfSprite_setTexture(game_tx.skybg, tx, false);
+    sfSprite_setTextureRect(game_tx.skybg, rect);
     sfSprite_setPosition(game_tx.skybg, (sfVector2f){.x = 0, .y = 0});
     game_tx.walltx = sfRenderTexture_create(game->video.width, game->video.height, sfFalse);
     game_tx.wallsp = sfSprite_create();

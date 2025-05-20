@@ -6,17 +6,17 @@
 */
 
 #include "../../include/wolf.h"
+
 static void handle_events_loop(game_t *game)
 {
     while (sfRenderWindow_pollEvent(game->window, game->event)) {
         if (game->event->type == sfEvtClosed)
             game->state = STATE_EXIT;
-        if (game->event->type == sfEvtKeyReleased &&
-            game->event->key.code == sfKeyEscape)
+        if (sfKeyboard_isKeyPressed(sfKeyEscape))
             game->state = STATE_MENU_IN_GAME;
-        event_handling(game);
         handle_events(game);
     }
+    event_handling(game);
 }
 
 static void update_game(game_t *game)
@@ -42,12 +42,13 @@ switch_window_state_t play_game(game_t *game)
     game->context = init_overlay(game);
     game->gmtx = init_game_texture(game);
     sfRenderWindow_setMouseCursorVisible(game->window, sfFalse);
+    game->clock = sfClock_create();
 
     while (game->state == STATE_GAME) {
         handle_events_loop(game);
         update_game(game);
         render_game(game);
-        sfSleep(sfMilliseconds(1));
+        game->delta = sfTime_asSeconds(sfClock_restart(game->clock));
     }
     sfRenderWindow_setMouseCursorVisible(game->window, sfTrue);
     return game->state;

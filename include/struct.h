@@ -76,7 +76,18 @@ typedef struct app_context_s {
 typedef struct text_elemets_s {
     sfText *title;
     sfText *volume;
-    sfText *resolution;
+    sfText *resolution;    
+    player_t player;
+    int **map;
+    sfRenderWindow *window;
+    sfEvent *event;
+    sfVideoMode video;
+    sfVector2f map_size;
+    sfClock *clock;
+    float delta;
+    app_t app;
+    switch_window_state_t state;
+    context_t context;
     sfText *back;
     sfText *fullscreen;
     sfText *save;
@@ -123,7 +134,8 @@ typedef struct game_s {
     sfEvent *event;
     sfVideoMode video;
     sfVector2f map_size;
-    sfClock *time;
+    sfClock *clock;
+    float delta;
     app_t app;
     switch_window_state_t state;
     context_t context;

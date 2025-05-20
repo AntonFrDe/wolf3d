@@ -24,6 +24,7 @@ game_t *init_game(void)
     game->map = make_map(game);
     sfRenderWindow_setPosition(game->window, position);
     game->event = malloc(sizeof(sfEvent));
-    game->time = sfClock_create();
+    game->clock = sfClock_create();
+    game->delta = 0;
     return game;
 }

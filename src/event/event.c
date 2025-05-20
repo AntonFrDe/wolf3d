@@ -28,29 +28,6 @@ static void reload_event(context_t *ctx, sfSound *reload)
     }
 }
 
-static void rotate_player(game_t *game, float angle)
-{
-    float cos_a = cos(angle);
-    float sin_a = sin(angle);
-    float old_dir_x = game->player.dir.x;
-    float old_plane_x = game->player.plane.x;
-
-    game->player.dir.x = old_dir_x * cos_a - game->player.dir.y * sin_a;
-    game->player.dir.y = old_dir_x * sin_a + game->player.dir.y * cos_a;
-    game->player.plane.x = old_plane_x * cos_a - game->player.plane.y * sin_a;
-    game->player.plane.y = old_plane_x * sin_a + game->player.plane.y * cos_a;
-}
-
-static void turn_event(game_t *game)
-{
-    sfVector2i mouse_loc = sfMouse_getPositionRenderWindow(game->window);
-
-    if (mouse_loc.x > (int)game->video.width / 2)
-        rotate_player(game, -0.01f);
-    if (mouse_loc.x < (int)game->video.width / 2)
-        rotate_player(game, 0.01f);
-}
-
 void handle_events(game_t *game)
 {
     if (game->event->type == sfEvtClosed)
@@ -58,9 +35,8 @@ void handle_events(game_t *game)
     if (game->event->type == sfEvtMouseButtonPressed
         && game->event->mouseButton.button == sfMouseLeft)
         fire_event(&game->context, game->context.fire);
-    if (game->event->type == sfEvtKeyPressed && game->event->key.code == sfKeyR)
+    if (sfKeyboard_isKeyPressed(sfKeyR))
         reload_event(&game->context, game->context.reload);
-    if (game->event->type == sfEvtKeyPressed && game->event->key.code == sfKeyF)
+    if (sfKeyboard_isKeyPressed(sfKeyF))
         game->context.weapon.is_flash = game->context.weapon.is_flash == 0;
-    turn_event(game);
 }

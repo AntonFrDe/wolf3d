@@ -17,5 +17,6 @@ player_t init_player(void)
     player.dir.y = 0;
     player.plane.x = 0;
     player.plane.y = 0.66;
+    player.angle = 0;
     return player;
 }

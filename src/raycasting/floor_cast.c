@@ -28,7 +28,7 @@ void floor_cast(game_t *game)
     floor_cast_t fc;
     sfVertex px;
     sfVertexArray *array = sfVertexArray_create();
-    int tex_size = 1024;
+    int tex_size = 64;
 
     for (int y = game->video.height / 2; y != (int)game->video.height; y++) {
         fc = init_floor_cast(game, y);
