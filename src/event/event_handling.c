@@ -78,7 +78,7 @@ static void rotate_player(game_t *game, float dist)
     game->player.dir.y = old_dir_x * sin_a + game->player.dir.y * cos_a;
     game->player.plane.x = old_plane_x * cos_a - game->player.plane.y * sin_a;
     game->player.plane.y = old_plane_x * sin_a + game->player.plane.y * cos_a;
-    game->player.angle += angle;
+    game->player.angle -= angle * 100;
     game->player.angle %= 360;
 }
 
