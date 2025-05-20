@@ -60,8 +60,8 @@ static int **init_map_array(char *map_file, sfVector2f map_size)
 
 int **make_map(game_t *game)
 {
-    game->map_size = map_size("map", game->map_size);
+    game->map_size = map_size("map2", game->map_size);
     if (game->map_size.x == 0 || game->map_size.y == 0)
         return NULL;
-    return init_map_array("map", game->map_size);
+    return init_map_array("map2", game->map_size);
 }

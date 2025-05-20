@@ -13,11 +13,11 @@ static void draw_wall(game_t *game, raycast_t raycast, int i, int texX)
     sfIntRect rect;
     sfSprite *sp = sfSprite_create();
 
-    rect.height = game->gmtx.wtx[raycast.hit % 2].size; 
+    rect.height = game->gmtx.wtx[raycast.hit % 4].size; 
     rect.left = texX;
     rect.top = 0;
     rect.width = 1;
-    sfSprite_setTexture(sp, game->gmtx.wtx[raycast.hit % 2].tx, false);
+    sfSprite_setTexture(sp, game->gmtx.wtx[raycast.hit % 4].tx, false);
     sfSprite_setTextureRect(sp, rect);
     sfSprite_setPosition(sp, (sfVector2f){.x = i, game->video.height / 2 - raycast.len / 2});
     sfSprite_setScale(sp, (sfVector2f){.x = 1 , .y = raycast.len / rect.height});
@@ -35,11 +35,13 @@ void draw_txtr(game_t *game, raycast_t raycast, int i)
     float wallX = raycast.side == 0
         ? game->player.loc.y + distance * raycast.ray_dir.y
         : game->player.loc.x + distance * raycast.ray_dir.x;
-    int tex_size = game->gmtx.wtx[raycast.hit % 2].size;
+    int tex_size = game->gmtx.wtx[raycast.hit % 4].size;
     int texX;
 
     wallX -= floorf(wallX);
     texX = (int)(wallX * tex_size);
+    if (raycast.hit == 2 && distance < 0.50)
+        return;
     raycast.len = distance > 0
         ? game->video.height / distance
         : game->video.height / 0.01f;

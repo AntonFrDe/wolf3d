@@ -11,7 +11,7 @@ player_t init_player(void)
 {
     player_t player;
 
-    player.loc.x = 22;
+    player.loc.x = 12;
     player.loc.y = 12;
     player.dir.x = -1;
     player.dir.y = 0;

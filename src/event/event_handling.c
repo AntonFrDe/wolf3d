@@ -14,9 +14,11 @@ static void move_forward(game_t *game, float speed)
     int x = (int)(game->player.loc.x + game->player.dir.x * speed);
     int y = (int)(game->player.loc.y + game->player.dir.y * speed);
 
-    if (game->map[y][(int)game->player.loc.x] == 0)
+    if (game->map[y][(int)game->player.loc.x] == 0 ||
+        game->map[y][(int)game->player.loc.x] == 2)
         game->player.loc.y += game->player.dir.y * speed;
-    if (game->map[(int)game->player.loc.y][x] == 0)
+    if (game->map[(int)game->player.loc.y][x] == 0 ||
+        game->map[(int)game->player.loc.y][x] == 2)
         game->player.loc.x += game->player.dir.x * speed;
 }
 
@@ -25,9 +27,11 @@ static void move_backward(game_t *game, float speed)
     int x = (int)(game->player.loc.x - game->player.dir.x * speed);
     int y = (int)(game->player.loc.y - game->player.dir.y * speed);
 
-    if (game->map[y][(int)game->player.loc.x] == 0)
+    if (game->map[y][(int)game->player.loc.x] == 0 ||
+        game->map[y][(int)game->player.loc.x] == 2)
         game->player.loc.y -= game->player.dir.y * speed;
-    if (game->map[(int)game->player.loc.y][x] == 0)
+    if (game->map[(int)game->player.loc.y][x] == 0 ||
+        game->map[(int)game->player.loc.y][x] == 2)
         game->player.loc.x -= game->player.dir.x * speed;
 }
 
@@ -38,9 +42,11 @@ static void strafe(game_t *game, float speed, int dir)
     int x = (int)(game->player.loc.x + plane_x * speed);
     int y = (int)(game->player.loc.y + plane_y * speed);
 
-    if (game->map[y][(int)game->player.loc.x] == 0)
+    if (game->map[y][(int)game->player.loc.x] == 0 ||
+        game->map[(int)game->player.loc.y][x] == 2)
         game->player.loc.y += plane_y * speed;
-    if (game->map[(int)game->player.loc.y][x] == 0)
+    if (game->map[(int)game->player.loc.y][x] == 0 ||
+        game->map[(int)game->player.loc.y][x] == 2)
         game->player.loc.x += plane_x * speed;
 }
 
