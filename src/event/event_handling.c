@@ -54,7 +54,7 @@ static void strafe(game_t *game, float speed, int dir)
 
 static void mooving_func(game_t *game)
 {
-    float move_speed = 0.1f;
+    float move_speed = 2 * game->delta;
 
     if (sfKeyboard_isKeyPressed(sfKeyZ))
         move_forward(game, move_speed);
@@ -68,7 +68,7 @@ static void mooving_func(game_t *game)
 
 static void rotate_player(game_t *game, float dist)
 {
-    float angle = dist > game->video.width / 2 ? -0.2f : 0.2f;
+    float angle = (dist > game->video.width / 2 ? -5 : 5) * game->delta;
     float cos_a = cos(angle);
     float sin_a = sin(angle);
     float old_dir_x = game->player.dir.x;
@@ -88,8 +88,8 @@ static void turn_event(game_t *game)
     sfIntRect rect = {0, 0, 0, 0};
     float dist = mouse_loc.x;
 
-    if (mouse_loc.x == game->video.width / 2 &&
-        mouse_loc.y == game->video.height / 2)
+    if (mouse_loc.x == (int)game->video.width / 2 &&
+        mouse_loc.y == (int)game->video.height / 2)
         return;
     rotate_player(game, dist);
     rect.height = game->video.height / 2;
