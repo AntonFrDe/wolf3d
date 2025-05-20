@@ -12,9 +12,13 @@ wall_tx_t *init_walltx(game_txtr_t game_tx)
     game_tx.wtx = malloc(sizeof(wall_tx_t) * 5);
 
     game_tx.wtx[0].size = 1024;
-    game_tx.wtx[0].tx = sfTexture_createFromFile("Assets/pics/Bwall.png", NULL);
+    game_tx.wtx[0].tx = sfTexture_createFromFile("Assets/pics/r_wal.png", NULL);
     game_tx.wtx[1].size = 1024;
-    game_tx.wtx[1].tx = sfTexture_createFromFile("Assets/pics/RRwall.png", NULL);
+    game_tx.wtx[1].tx = sfTexture_createFromFile("Assets/pics/reach.png", NULL);
+    game_tx.wtx[2].size = 1024;
+    game_tx.wtx[2].tx = sfTexture_createFromFile("Assets/pics/door.png", NULL);
+    game_tx.wtx[3].size = 1024;
+    game_tx.wtx[3].tx = sfTexture_createFromFile("Assets/pics/blood.png", NULL);
     return game_tx.wtx;
 }
 
@@ -32,7 +36,7 @@ game_txtr_t init_game_texture(game_t *game)
     sfSprite_setPosition(game_tx.skybg, (sfVector2f){.x = 0, .y = 0});
     game_tx.walltx = sfRenderTexture_create(game->video.width, game->video.height, sfFalse);
     game_tx.wallsp = sfSprite_create();
-    game_tx.floor = sfImage_createFromFile("Assets/pics/purplestone.png");
+    game_tx.floor = sfImage_createFromFile("Assets/pics/floor.png");
     sfSprite_setTexture(game_tx.wallsp, sfRenderTexture_getTexture(game_tx.walltx), sfTrue);
     return game_tx;
 }

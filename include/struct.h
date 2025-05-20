@@ -129,5 +129,14 @@ typedef struct game_s {
     context_t context;
 } game_t;
 
+typedef struct s_particle {
+    sfTexture *texture;
+    sfSprite *sprite;
+    sfVector2f position;
+    sfClock *clock;
+    sfTime duration;
+} particle_t;
+
+
 
 #endif /* !STRUCT_H_ */
