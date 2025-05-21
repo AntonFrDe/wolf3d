@@ -76,7 +76,7 @@ typedef struct app_context_s {
 typedef struct text_elemets_s {
     sfText *title;
     sfText *volume;
-    sfText *resolution;    
+    sfText *resolution;
     player_t player;
     int **map;
     sfRenderWindow *window;

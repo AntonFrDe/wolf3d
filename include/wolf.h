@@ -1,22 +1,27 @@
 /*
 ** EPITECH PROJECT, 2025
-** raycasting3
+** Wolf3d
 ** File description:
 ** wolf
 */
 
-#include "SFML/Graphics.h"
-#include "SFML/System.h"
-#include "SFML/Window.h"
+
 
 #ifndef WOLF_H_
+    #define WOLF_H_
     #include "struct.h"
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
     #include "overlay.h"
-    #define TEX_SIZE 64
-    #define WOLF_H_
+    #include "SFML/Graphics.h"
+    #include "SFML/System.h"
+    #include "SFML/Window.h"
+    #define TILE_SIZE 15
+    #define MAX_FPS_SIZE 64
+    #define MINIMAP_SCALE 0.2f
+    #define AIR 0
+    #define DOOR 2
 int main(void);
 player_t init_player(void);
 game_t *init_game(void);

@@ -19,8 +19,10 @@ weapon_t create_weapon(const char *filepath,
     sfSprite_setScale(weapon.sprite, scale);
     weapon.offset = offset;
     bounds = sfSprite_getLocalBounds(weapon.sprite);
-    weapon.original_pos.x = (window_size.x - bounds.width * scale.x) / 2 + offset.x;
-    weapon.original_pos.y = (window_size.y - bounds.height * scale.y) / 2 + offset.y;
+    weapon.original_pos.x = (window_size.x - bounds.width * scale.x)
+        / 2 + offset.x;
+    weapon.original_pos.y = (window_size.y - bounds.height * scale.y)
+        / 2 + offset.y;
     sfSprite_setPosition(weapon.sprite, weapon.original_pos);
     weapon.is_shooting = 0;
     weapon.shoot_offset = 0;

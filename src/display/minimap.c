@@ -5,12 +5,7 @@
 ** minimap
 */
 
-
 #include "../../include/wolf.h"
-
-#define TILE_SIZE 10
-#define MINIMAP_SCALE 0.2f
-
 
 static void draw_tile(sfRenderWindow *window, sfVector2f pos, sfColor color)
 {
@@ -26,40 +21,42 @@ static void draw_tile(sfRenderWindow *window, sfVector2f pos, sfColor color)
 
 static void draw_wall(game_t *game, int x, int y)
 {
+    sfColor color;
+
     if (y < (int)game->map_size.y && x < (int)game->map_size.x) {
-        int tile = game->map[y][x];
-        sfColor color = sfColor_fromRGB(30, 30, 30);
-        if (tile == 1)
+        switch (game->map[y][x]) {
+        case 0:
+            color = sfBlack;
+            break;
+        case 1:
             color = sfColor_fromRGB(200, 200, 200);
-        else if (tile == 2)
+            break;
+        default:
             color = sfColor_fromRGB(255, 100, 100);
-        else if (tile == 3)
-            color = sfColor_fromRGB(200, 0, 200);
-        else if (tile == 4)
-            color = sfColor_fromRGB(50, 100, 200);
-        draw_tile(game->window,
-            (sfVector2f){x * TILE_SIZE + 180, game->video.height - y * TILE_SIZE - 100}, color);
+            break;
+        }
+        draw_tile(game->window, (sfVector2f){x * TILE_SIZE + 180,
+                game->video.height - y * TILE_SIZE - 100}, color);
     }
 }
 
 void draw_minimap(game_t *game)
 {
-    sfColor player_color = sfGreen;
+    sfColor player_color = sfBlue;
     float px = game->player.loc.x * TILE_SIZE + 180;
     float py = game->video.height - game->player.loc.y * TILE_SIZE - 100;
-    //sfVertex line[2];
-    
+    sfVertex line[2];
+
     for (int y = 0; y < (int)game->video.height / TILE_SIZE; y++)
         for (int x = 0; x < (int)game->video.width / TILE_SIZE; x++)
             draw_wall(game, x, y);
     draw_tile(game->window, (sfVector2f){px, py}, player_color);
-    /*
     line[0].position = (sfVector2f){px + TILE_SIZE / 2, py + TILE_SIZE / 2};
-    line[0].color = sfRed;
+    line[0].color = sfBlue;
     line[1].position = (sfVector2f){
         px + game->player.dir.x * TILE_SIZE * 2 + TILE_SIZE / 2,
         py + game->player.dir.y * TILE_SIZE * 2 + TILE_SIZE / 2};
-    line[1].color = sfRed;
+    line[1].position.y = 2 * line[0].position.y - line[1].position.y;
+    line[1].color = sfBlue;
     sfRenderWindow_drawPrimitives(game->window, line, 2, sfLines, NULL);
-    */
 }

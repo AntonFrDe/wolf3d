@@ -13,14 +13,16 @@ static void draw_wall(game_t *game, raycast_t raycast, int i, int texX)
     sfIntRect rect;
     sfSprite *sp = sfSprite_create();
 
-    rect.height = game->gmtx.wtx[raycast.hit % 4].size; 
+    rect.height = game->gmtx.wtx[raycast.hit % 4].size;
     rect.left = texX;
     rect.top = 0;
     rect.width = 1;
     sfSprite_setTexture(sp, game->gmtx.wtx[raycast.hit % 4].tx, false);
     sfSprite_setTextureRect(sp, rect);
-    sfSprite_setPosition(sp, (sfVector2f){.x = i, game->video.height / 2 - raycast.len / 2});
-    sfSprite_setScale(sp, (sfVector2f){.x = 1 , .y = raycast.len / rect.height});
+    sfSprite_setPosition(sp, (sfVector2f){.x = i, game->video.height
+        / 2 - raycast.len / 2});
+    sfSprite_setScale(sp, (sfVector2f){.x = 1 , raycast.len /
+        rect.height});
     sfRenderTexture_drawSprite(game->gmtx.walltx, sp, NULL);
     if (raycast.side == 1 || game->context.weapon.is_flash == 1)
         draw_ray(game, raycast, i);

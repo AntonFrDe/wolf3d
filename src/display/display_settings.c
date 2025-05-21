@@ -110,7 +110,7 @@ static void render_settings(app_context_t *ctx,
 }
 
 static void init_settings_texts(text_elemets_t *texts, sfFont *font,
-    int volume, int res_index, app_context_t *ctx)
+    app_context_t *ctx)
 {
     char volume_buf[13];
     char *resolutions_texts[2] = {"1920x1080", "1280x720"};
@@ -126,12 +126,12 @@ static void init_settings_texts(text_elemets_t *texts, sfFont *font,
     sfText_setCharacterSize(texts->volume, 50);
     sfText_setFont(texts->resolution, font);
     sfText_setCharacterSize(texts->resolution, 50);
-    snprintf(volume_buf, sizeof(volume_buf), "Volume: %d%%", volume);
+    snprintf(volume_buf, sizeof(volume_buf), "Volume: %d%%", *ctx->volume);
     sfText_setString(texts->volume, volume_buf);
+    sfText_setString(texts->resolution, "Fullscreen Mode Activated");
     if (*ctx->fullscreen_status == 0)
-        sfText_setString(texts->resolution, resolutions_texts[res_index]);
-    else
-        sfText_setString(texts->resolution, "Fullscreen Mode Activated");
+        sfText_setString(texts->resolution,
+            resolutions_texts[*ctx->res_index]);
 }
 
 static switch_window_state_t handle_event_loop(app_context_t *ctx,
@@ -157,31 +157,24 @@ static switch_window_state_t handle_event_loop(app_context_t *ctx,
     return STATE_SETTINGS;
 }
 
-static switch_window_state_t display_settings_loop(app_context_t *ctx,
-    switch_window_state_t state,
-    text_elemets_t *texts, sfEvent *event, menu_t *menu)
+static void display_settings_loop(app_context_t *ctx, game_t *game,
+    text_elemets_t *texts, menu_t *menu)
 {
-    while (sfRenderWindow_pollEvent(*ctx->window, event)) {
-        state = handle_event_loop(ctx, texts, event, menu);
-        if (state != STATE_SETTINGS) {
-            return state;
-        }
-    }
-    return state;
+    while (sfRenderWindow_pollEvent(*ctx->window, game->event)
+        && game->state == STATE_SETTINGS)
+        game->state = handle_event_loop(ctx, texts, game->event, menu);
 }
 
 switch_window_state_t display_settings(app_context_t *ctx, game_t *game)
 {
     text_elemets_t texts;
-    sfEvent event;
     menu_t menu = { .window = game->window, .font = game->app.font,
-         .view = game->app.view};
+        .view = game->app.view};
 
-    init_settings_texts(&texts, game->app.font, *ctx->volume,
-        *ctx->res_index, ctx);
+    init_settings_texts(&texts, game->app.font, ctx);
     init_settings_background(&menu);
     while (game->state == STATE_SETTINGS) {
-        game->state = display_settings_loop(ctx, game->state, &texts, &event, &menu);
+        display_settings_loop(ctx, game, &texts, &menu);
         update_text_positions(&texts, ctx->view);
         render_settings(ctx, &texts, &menu);
         sfRenderWindow_display(game->window);

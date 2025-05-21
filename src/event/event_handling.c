@@ -8,8 +8,6 @@
 #include "../../include/wolf.h"
 #include "../../include/struct.h"
 #include <math.h>
-#define AIR 0
-#define DOOR 2
 
 static void move_forward(game_t *game, float speed)
 {

@@ -15,9 +15,12 @@ static floor_cast_t init_floor_cast(game_t *game, int y)
         game->player.dir.y - game->player.plane.y};
     fc.ray_dir1 = (sfVector2f){ game->player.dir.x + game->player.plane.x,
         game->player.dir.y + game->player.plane.y};
-    fc.row_distance = (float)game->video.height / (2.0f * y - game->video.height);
-    fc.step.x = fc.row_distance * (fc.ray_dir1.x - fc.ray_dir0.x) / game->video.width;
-    fc.step.y = fc.row_distance * (fc.ray_dir1.y - fc.ray_dir0.y) / game->video.width;
+    fc.row_distance = (float)game->video.height /
+        (2.0f * y - game->video.height);
+    fc.step.x = fc.row_distance * (fc.ray_dir1.x - fc.ray_dir0.x)
+        / game->video.width;
+    fc.step.y = fc.row_distance * (fc.ray_dir1.y - fc.ray_dir0.y)
+        / game->video.width;
     fc.floor.x = game->player.loc.x + fc.row_distance * fc.ray_dir0.x;
     fc.floor.y = game->player.loc.y + fc.row_distance * fc.ray_dir0.y;
     return fc;
@@ -33,9 +36,10 @@ void floor_cast(game_t *game)
     for (int y = game->video.height / 2; y != (int)game->video.height; y++) {
         fc = init_floor_cast(game, y);
         for (int x = 0; x < (int)game->video.width; x++) {
-            fc.tex_coords.x = (int)(tex_size * (fc.floor.x - (int)fc.floor.x) * 2) & (tex_size - 1);
-            fc.tex_coords.y = (int)(tex_size * (fc.floor.y - (int)fc.floor.y) * 2) & (tex_size - 1);
-            fc.color = sfImage_getPixel(game->gmtx.floor, fc.tex_coords.x, fc.tex_coords.y);
+            fc.color = sfImage_getPixel(game->gmtx.floor,
+            (int)(tex_size * (fc.floor.x -(int)fc.floor.x) * 2)
+            & (tex_size - 1), (int)(tex_size * (fc.floor.y -(int)fc.floor.y)
+            * 2) & (tex_size - 1));
             px = (sfVertex){.position = (sfVector2f){x, y}, .color = fc.color};
             sfVertexArray_append(array, px);
             fc.floor.x += fc.step.x;

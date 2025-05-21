@@ -12,8 +12,10 @@ static void reset_weapon_position(weapon_t *weapon, sfVector2u win_size)
     sfFloatRect bounds = sfSprite_getLocalBounds(weapon->sprite);
     sfVector2f scale = sfSprite_getScale(weapon->sprite);
 
-    weapon->original_pos.x = (win_size.x - bounds.width * scale.x) / 2 + weapon->offset.x;
-    weapon->original_pos.y = (win_size.y - bounds.height * scale.y) / 2 + weapon->offset.y;
+    weapon->original_pos.x = (win_size.x - bounds.width * scale.x)
+        / 2 + weapon->offset.x;
+    weapon->original_pos.y = (win_size.y - bounds.height * scale.y)
+        / 2 + weapon->offset.y;
     sfSprite_setPosition(weapon->sprite, weapon->original_pos);
 }
 

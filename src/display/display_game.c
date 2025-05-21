@@ -41,19 +41,15 @@ static int display_scene(game_t *game)
 {
     switch (game->state) {
         case STATE_MENU:
-            printf("MENU\n");
             game->state = display_menu(game);
             break;
         case STATE_SETTINGS:
-            printf("SETTINGS\n");
             game->state = context_setting(game);
             break;
         case STATE_MENU_IN_GAME:
-            printf("MENU IN GAME\n");
             context_menu_in_game(game);
             break;
         case STATE_GAME:
-            printf("GAME\n");
             game->state = play_game(game);
             break;
         case STATE_EXIT:
@@ -64,6 +60,7 @@ static int display_scene(game_t *game)
 
 void display_game(game_t *game)
 {
+    sfRenderWindow_setFramerateLimit(game->window, 64);
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, sfBlack);
         if (display_scene(game) == 1)

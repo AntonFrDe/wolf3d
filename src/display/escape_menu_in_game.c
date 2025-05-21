@@ -188,10 +188,6 @@ static int handle_event(sfEvent event, app_context_t *ctx, game_t *game,
         if (game->state != STATE_MENU_IN_GAME)
             return 0;
     }
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyEscape) {
-        game->state = STATE_MENU;
-        return 0;
-    }
     if (event.type == sfEvtKeyReleased && event.key.code == sfKeyX) {
         game->state = STATE_EXIT;
         return 0;

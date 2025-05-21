@@ -94,7 +94,7 @@ game_t *load_file(char *filename, game_t *game)
 
     if (file <= 0)
         return game;
-    for (;getline(&line, &size, file) != -1; load_success++)
+    for (; getline(&line, &size, file) != -1; load_success++)
         if (handle_load(my_str_to_word_array(line, ";\n"), &ammo, &player))
             load_success = 0;
     if (load_success == 3) {

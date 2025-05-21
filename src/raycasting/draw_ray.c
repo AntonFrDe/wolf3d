@@ -14,7 +14,7 @@ static sfColor color_ray(game_t *game, int i)
 
     color.a = 100;
     if (game->context.weapon.is_flash == 1 &&
-        i > (int)game->video.width / 6 && 
+        i > (int)game->video.width / 6 &&
         i < (int)game->video.width / 6 * 5) {
         color.a = 25;
         color.r = 255;
@@ -39,14 +39,12 @@ static void draw_line(sfRenderTexture *texture, sfVector2f start,
 
 static void flashlight_ray(game_t *game, sfVector2f end, sfColor color, int i)
 {
+    sfVector2f vec = {.x = game->video.width / 2, .y = game->video.height};
+
     if (game->context.weapon.is_flash == 1
-        && i > (int)game->video.width / 6 && 
+        && i > (int)game->video.width / 6 &&
         i < (int)game->video.width / 6 * 5)
-        draw_line(game->gmtx.walltx,
-            (sfVector2f){
-                .x = game->video.width / 2, 
-                .y = game->video.height}
-                , end, color);
+        draw_line(game->gmtx.walltx, vec, end, color);
 }
 
 void draw_ray(game_t *game, raycast_t raycast, int i)

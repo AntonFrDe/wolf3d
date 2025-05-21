@@ -119,12 +119,11 @@ static switch_window_state_t handle_menu_events_condition(menu_t *menu,
     sfFloatRect start_bounds;
     sfFloatRect settings_bounds;
     sfFloatRect load_bounds;
-    sfVector2i pix;
     sfVector2f pos;
 
     if (event.type == sfEvtMouseButtonPressed) {
-        pix = sfMouse_getPositionRenderWindow(menu->window);
-        pos = sfRenderWindow_mapPixelToCoords(menu->window, pix, menu->view);
+        pos = sfRenderWindow_mapPixelToCoords(menu->window,
+            sfMouse_getPositionRenderWindow(menu->window), menu->view);
         start_bounds = sfText_getGlobalBounds(menu->start);
         settings_bounds = sfText_getGlobalBounds(menu->settings);
         load_bounds = sfText_getGlobalBounds(menu->load);
@@ -132,8 +131,6 @@ static switch_window_state_t handle_menu_events_condition(menu_t *menu,
             return STATE_GAME;
         if (sfFloatRect_contains(&settings_bounds, pos.x, pos.y))
             return STATE_SETTINGS;
-        if (sfFloatRect_contains(&load_bounds, pos.x, pos.y))
-            printf("Game loaded!\n");
     }
     if (event.type == sfEvtKeyReleased && event.key.code == sfKeyX) {
         return STATE_EXIT;

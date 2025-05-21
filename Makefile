@@ -60,15 +60,12 @@ OVERLAY := $(addprefix src/overlay/, $(OVERLAY))
 
 CFLAGS += -g3 -Wall -Wextra -Iinclude
 
-OBJ_SRC	=	$(SRC:.c=.o)
-OBJ_STRUCT	=	$(STRUCT:.c=.o)
-OBJ_DISPLAY = $(DISPLAY:.c=.o)
-OBJ_RAYCAST = $(RAYCAST:.c=.o)
+OBJ_SRC	=	$(SRC:.c=.o) $(STRUCT:.c=.o) $(DISPLAY:.c=.o) $(RAYCAST:.c=.o)
 OBJ_TOOLS	=	$(TOOLS:.c=.o)
 OBJ_EVENT	=	$(EVENT:.c=.o)
 OBJ_OVERLAY	=	$(OVERLAY:.c=.o)
 
-OBJ = $(OBJ_SRC) $(OBJ_STRUCT) $(OBJ_DISPLAY) $(OBJ_RAYCAST) $(OBJ_TOOLS) $(OBJ_MENU) $(OBJ_EVENT) $(OBJ_OVERLAY)
+OBJ = $(OBJ_SRC) $(OBJ_TOOLS) $(OBJ_MENU) $(OBJ_EVENT) $(OBJ_OVERLAY)
 CSFML = -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 

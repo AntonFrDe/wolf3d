@@ -10,8 +10,10 @@
 context_t init_overlay(game_t *game)
 {
     context_t ctx;
-    sfSoundBuffer *fire_buf = sfSoundBuffer_createFromFile("Assets/fire_b.wav");
-    sfSoundBuffer *reload_buf = sfSoundBuffer_createFromFile("Assets/load.wav");
+    sfSoundBuffer *fire_buf =
+        sfSoundBuffer_createFromFile("Assets/fire_b.wav");
+    sfSoundBuffer *reload_buf =
+        sfSoundBuffer_createFromFile("Assets/load.wav");
     sfVector2f scale = {1.3f, 1.3f};
     sfVector2u win_size = sfRenderWindow_getSize(game->window);
     sfVector2f offset = {60.f, 70.f};
