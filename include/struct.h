@@ -139,6 +139,7 @@ typedef struct game_s {
     app_t app;
     switch_window_state_t state;
     context_t context;
+    sfBool fps;
 } game_t;
 
 typedef struct s_particle {

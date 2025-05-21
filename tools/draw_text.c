@@ -5,7 +5,7 @@
 ** draw_text
 */
 
-#include "../../include/wolf.h"
+#include "../include/wolf.h"
 
 void draw_text_at(game_t *game, const char *str, sfVector2f position)
 {
@@ -15,7 +15,7 @@ void draw_text_at(game_t *game, const char *str, sfVector2f position)
         return;
     sfText_setString(text, str);
     sfText_setFont(text, game->app.font);
-    sfText_setCharacterSize(text, 24);
+    sfText_setCharacterSize(text, 32);
     sfText_setFillColor(text, sfWhite);
     sfText_setPosition(text, position);
     sfRenderWindow_drawText(game->window, text, NULL);

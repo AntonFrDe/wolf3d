@@ -6,6 +6,7 @@
 */
 
 #include "../../include/wolf.h"
+#define MAX_FPS_SIZE 64
 
 static void handle_events_loop(game_t *game)
 {
@@ -30,10 +31,15 @@ static void update_game(game_t *game)
 
 static void render_game(game_t *game)
 {
+    char *nb = malloc(MAX_FPS_SIZE);
     sfRenderWindow_clear(game->window, sfBlack);
     sfRenderWindow_drawSprite(game->window, game->gmtx.wallsp, NULL);
     display_hud(game);
     draw_minimap(game);
+    if (game->fps) {
+        sprintf(nb, "%.0f", 1 / game->delta);
+        draw_text_at(game, nb, (sfVector2f){0, 0});
+    }
     sfRenderWindow_display(game->window);
 }
 

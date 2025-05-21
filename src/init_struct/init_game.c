@@ -26,5 +26,6 @@ game_t *init_game(void)
     game->event = malloc(sizeof(sfEvent));
     game->clock = sfClock_create();
     game->delta = 0;
+    game->fps = sfFalse;
     return game;
 }
