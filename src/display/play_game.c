@@ -34,6 +34,11 @@ static void render_game(game_t *game)
 
     sfRenderWindow_clear(game->window, sfBlack);
     sfRenderWindow_drawSprite(game->window, game->gmtx.wallsp, NULL);
+    if (game->context.weapon.is_fire_shooting) {
+        sfSprite_setPosition(game->context.weapon.shoot_sprite, game->context.shoot_fire_pos);
+        game->context.shoot_fire_pos.y -= 3;
+        sfRenderWindow_drawSprite(game->window, game->context.weapon.shoot_sprite, NULL);
+    }
     display_hud(game);
     draw_minimap(game);
     if (game->fps) {
@@ -43,14 +48,34 @@ static void render_game(game_t *game)
     sfRenderWindow_display(game->window);
 }
 
+static void update_flash(context_t *ctx)
+{
+    ctx->weapon.shoot_timer += 1;
+    if (ctx->weapon.shoot_timer > 1) {
+        ctx->weapon.shoot_timer = 0;
+        ctx->weapon.shoot_index += 1;
+        if (ctx->weapon.shoot_index >= 3) {
+            ctx->shoot_fire_pos.x = 1110;
+            ctx->shoot_fire_pos.y = 350;
+            ctx->weapon.is_fire_shooting = sfFalse;
+        } else {
+            sfSprite_setTextureRect(ctx->weapon.shoot_sprite,
+                ctx->weapon.shoot_frames[ctx->weapon.shoot_index]
+            );
+        }
+    }
+}
+
 switch_window_state_t play_game(game_t *game)
 {
     game->context = init_overlay(game);
     game->gmtx = init_game_texture(game);
     sfRenderWindow_setMouseCursorVisible(game->window, sfFalse);
     game->clock = sfClock_create();
+    game->context.shoot_fire_pos = (sfVector2f){1110, 350};
     while (game->state == STATE_GAME) {
         handle_events_loop(game);
+        update_flash(&game->context);
         update_game(game);
         render_game(game);
         game->delta = sfTime_asSeconds(sfClock_restart(game->clock));
