@@ -60,7 +60,7 @@ game_t *load_file(char *filename, game_t *game);
 switch_window_state_t display_loadpage(game_t *game);
 void save_file(char *filename, game_t *game);
 char *my_superstrcat(int nb_elem, ...);
-char **my_str_to_word_array(char delimit, char *str);
+char **my_str_to_word_array(char *str, char *delimit);
 int my_arrlen(char **arr);
 void write_volume_on_window(sfText *text, int volume);
 int handle_event(event_ctx_t *event_ctx, game_t *game,

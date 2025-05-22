@@ -7,14 +7,15 @@
 
 #include "../include/wolf.h"
 
-static int is_delimit(char *a, char *del)
+static int is_delimit(char a, char *del)
 {
-    if (a == del || a == '\n' || a == '\t' || a == '~')
-        return 1;
+    for (int i = 0; del[i] != '\0'; i++)
+        if (a == del[i])
+            return 1;
     return 0;
 }
 
-static int nb_word(char delimit, char *str)
+static int nb_word(char *delimit, char *str)
 {
     int nb_wrd = 0;
 
@@ -30,7 +31,7 @@ static char *make_word(int i1, int i, char *word, char *str)
     int curr = 0;
 
     word = malloc(sizeof(char) * (i - i1 + 2));
-    for (i1; i1 != i + 1; i1++) {
+    for (; i1 != i + 1; i1++) {
         word[curr] = str[i1];
         curr++;
     }
@@ -38,7 +39,7 @@ static char *make_word(int i1, int i, char *word, char *str)
     return word;
 }
 
-static int is_start(char *str, char delimit, int i)
+static int is_start(char *str, char *delimit, int i)
 {
     if (i == 0 && is_delimit(str[i], delimit) == 0)
         return 1;
@@ -50,11 +51,11 @@ static int is_start(char *str, char delimit, int i)
     return 0;
 }
 
-char **my_str_to_word_array(char delimit, char *str)
+char **my_str_to_word_array(char *str, char *delimit)
 {
     int current_word = 0;
     int i1 = 0;
-    char *array;
+    char **array;
 
     if (!str || str[0] == '\0' || str == NULL || strlen(str) == 0)
         return NULL;

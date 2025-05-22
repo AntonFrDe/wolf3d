@@ -69,16 +69,13 @@ static int load_plan(char **line_arr, player_t *player)
 
 static int handle_load(char **line_arr, int *ammo, player_t *player)
 {
-    float nb1;
-    float nb2;
-
-    if (strcmp(line_arr, "loc") == 0)
+    if (strcmp(line_arr[0], "loc") == 0)
         return load_loc(line_arr, player);
-    if (strcmp(line_arr, "mun") == 0)
+    if (strcmp(line_arr[0], "mun") == 0)
         return load_mun(line_arr, ammo);
-    if (strcmp(line_arr, "dir") == 0)
+    if (strcmp(line_arr[0], "dir") == 0)
         return load_dir(line_arr, player);
-    if (strcmp(line_arr, "plan") == 0)
+    if (strcmp(line_arr[0], "plan") == 0)
         return load_plan(line_arr, player);
     return 1;
 }
@@ -92,7 +89,7 @@ game_t *load_file(char *filename, game_t *game)
     int ammo;
     player_t player;
 
-    if (file <= 0)
+    if (file == NULL)
         return game;
     for (; getline(&line, &size, file) != -1; load_success++)
         if (handle_load(my_str_to_word_array(line, ";\n"), &ammo, &player))

@@ -10,7 +10,8 @@
 weapon_t initialize_weapon_shoot_animation(weapon_t weapon)
 {
     weapon.is_flash = 0;
-    weapon.shoot_texture = sfTexture_createFromFile("Assets/shooting_effect.png", NULL);
+    weapon.shoot_texture = sfTexture_createFromFile(
+        "Assets/shooting_effect.png", NULL);
     weapon.shoot_sprite = sfSprite_create();
     sfSprite_setTexture(weapon.shoot_sprite, weapon.shoot_texture, sfTrue);
     weapon.shoot_frames[0] = (sfIntRect){85, 0, 512, 1024};

@@ -35,9 +35,11 @@ static void render_game(game_t *game)
     sfRenderWindow_clear(game->window, sfBlack);
     sfRenderWindow_drawSprite(game->window, game->gmtx.wallsp, NULL);
     if (game->context.weapon.is_fire_shooting) {
-        sfSprite_setPosition(game->context.weapon.shoot_sprite, game->context.shoot_fire_pos);
+        sfSprite_setPosition(game->context.weapon.shoot_sprite,
+            game->context.shoot_fire_pos);
         game->context.shoot_fire_pos.y -= 3;
-        sfRenderWindow_drawSprite(game->window, game->context.weapon.shoot_sprite, NULL);
+        sfRenderWindow_drawSprite(game->window,
+            game->context.weapon.shoot_sprite, NULL);
     }
     display_hud(game);
     draw_minimap(game);
