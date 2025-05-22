@@ -21,7 +21,7 @@ static void draw_wall(game_t *game, raycast_t raycast, int i, int texX)
     sfSprite_setTextureRect(sp, rect);
     sfSprite_setPosition(sp, (sfVector2f){.x = i, game->video.height
         / 2 - raycast.len / 2});
-    sfSprite_setScale(sp, (sfVector2f){.x = 1 , raycast.len /
+    sfSprite_setScale(sp, (sfVector2f){.x = 1, raycast.len /
         rect.height});
     sfRenderTexture_drawSprite(game->gmtx.walltx, sp, NULL);
     if (raycast.side == 1 || game->context.weapon.is_flash == 1)

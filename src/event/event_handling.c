@@ -66,7 +66,7 @@ static void mooving_func(game_t *game)
 
 static void rotate_player(game_t *game, float dist)
 {
-    float angle = (dist > game->video.width / 2 ? -5 : 5) * game->delta;
+    float angle = dist / 5 * game->delta;
     float cos_a = cos(angle);
     float sin_a = sin(angle);
     float old_dir_x = game->player.dir.x;
@@ -84,12 +84,12 @@ static void turn_event(game_t *game)
 {
     sfVector2i mouse_loc = sfMouse_getPositionRenderWindow(game->window);
     sfIntRect rect = {0, 0, 0, 0};
-    float dist = mouse_loc.x;
+    float dist = (float)mouse_loc.x - game->video.width / 2;
 
     if (mouse_loc.x == (int)game->video.width / 2 &&
         mouse_loc.y == (int)game->video.height / 2)
         return;
-    rotate_player(game, dist);
+    rotate_player(game, -dist);
     rect.height = game->video.height / 2;
     rect.width = game->video.width;
     rect.left = game->player.angle;
