@@ -15,6 +15,10 @@ static void fire_event(context_t *ctx, sfSound *fire)
         ctx->weapon.is_shooting = 1;
         ctx->weapon.shoot_offset = 0;
         ctx->ammo.ammo--;
+        ctx->weapon.is_fire_shooting = sfTrue;
+        ctx->weapon.shoot_index = 0;
+        ctx->weapon.shoot_timer = 0;
+        sfSprite_setTextureRect(ctx->weapon.shoot_sprite, ctx->weapon.shoot_frames[0]);
         update_ammo_text(&ctx->ammo);
         sfSound_play(fire);
     }

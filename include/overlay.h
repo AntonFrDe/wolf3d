@@ -22,6 +22,12 @@ typedef struct weapon_s {
     int is_reloading;
     float reload_offset;
     int is_flash;
+    sfTexture *shoot_texture;
+    sfSprite *shoot_sprite;
+    sfIntRect shoot_frames[3];
+    int shoot_index;
+    int shoot_timer;
+    sfBool is_fire_shooting;
 } weapon_t;
 
 typedef struct hud_s {
@@ -45,6 +51,7 @@ typedef struct context_s {
     hud_t hud;
     sfSound *fire;
     sfSound *reload;
+    sfVector2f shoot_fire_pos;
 } context_t;
 
 hud_t create_hud(const char *filepath);
