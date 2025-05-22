@@ -43,7 +43,7 @@ game_txtr_t init_game_texture(game_t *game)
     game_tx.walltx = sfRenderTexture_create(game->video.width,
         game->video.height, sfFalse);
     game_tx.wallsp = sfSprite_create();
-    game_tx.floor = sfImage_createFromFile("Assets/ground_futur.png");
+    game_tx.floor = sfImage_createFromFile("Assets/pics/bluestone.png");
     sfSprite_setTexture(game_tx.wallsp,
         sfRenderTexture_getTexture(game_tx.walltx), sfTrue);
     return game_tx;
