@@ -9,8 +9,10 @@
 
 switch_window_state_t display_loadpage(game_t *game)
 {
+    char *ans;
     char *txt;
     // Display text and write box
-    //
-    game = load_file(txt, game);
+    // put textbox output in txt string
+    ans = my_superstrcat(ans, 3, "save/", ans, ".halosave");
+    game = load_file(ans, game);
 }

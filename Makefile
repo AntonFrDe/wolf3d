@@ -34,6 +34,7 @@ TOOLS =	remove_bsn.c	\
 		print_vector.c	\
 		key_event.c	\
 		draw_text.c	\
+		my_superstrcat.c	\
 
 EVENT =	event_handling.c	\
 		settings_mouse_events.c	\
@@ -44,7 +45,14 @@ OVERLAY =	ammo.c	\
 			update.c	\
 			weapon.c	\
 
+SAVE =	load_handling.c	\
+		load_page.c	\
+		save_handling.c	\
+		save_page.c	\
+
 SRC :=  $(addprefix src/, $(SRC))
+
+SAVE := $(addprefix src/saving/, $(SAVE))
 
 STRUCT := $(addprefix src/init_struct/, $(STRUCT))
 
@@ -60,12 +68,10 @@ OVERLAY := $(addprefix src/overlay/, $(OVERLAY))
 
 CFLAGS += -g3 -Wall -Wextra -Iinclude
 
-OBJ_SRC	=	$(SRC:.c=.o) $(STRUCT:.c=.o) $(DISPLAY:.c=.o) $(RAYCAST:.c=.o)
-OBJ_TOOLS	=	$(TOOLS:.c=.o)
-OBJ_EVENT	=	$(EVENT:.c=.o)
-OBJ_OVERLAY	=	$(OVERLAY:.c=.o)
+OBJ_ONE	=	$(SRC:.c=.o) $(STRUCT:.c=.o) $(DISPLAY:.c=.o) $(RAYCAST:.c=.o)
+OBJ_TWO	=	$(TOOLS:.c=.o) $(SAVE:.c=.o) $(EVENT:.c=.o) $(OVERLAY:.c=.o)
 
-OBJ = $(OBJ_SRC) $(OBJ_TOOLS) $(OBJ_MENU) $(OBJ_EVENT) $(OBJ_OVERLAY)
+OBJ = $(OBJ_ONE) $(OBJ_TWO)
 CSFML = -lcsfml-graphics -lcsfml-system -lcsfml-audio -lcsfml-window
 
 
