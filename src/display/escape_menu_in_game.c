@@ -42,27 +42,7 @@ static void change_button_color(text_elemets_t *texts, app_context_t *ctx)
         sfText_setFillColor(texts->volume, sfColor_fromRGB(116, 201, 238));
 }
 
-void resize_background_in_game(menu_t *menu)
-{
-    sfVector2u win_size = sfRenderWindow_getSize(menu->window);
-    sfVector2u tex_size;
-    float scale_x;
-    float scale_y;
-
-    if (menu->settings_background_texture != NULL) {
-        tex_size = sfTexture_getSize(menu->settings_background_texture);
-        scale_x = (float)win_size.x / (float)tex_size.x;
-        scale_y = (float)win_size.y / (float)tex_size.y;
-    } else {
-        return;
-    }
-    if (menu->settings_background_sprite != NULL) {
-        sfSprite_setScale(menu->settings_background_sprite,
-            (sfVector2f){scale_x, scale_y});
-    }
-}
-
-void init_in_game_background(menu_t *menu)
+static void init_in_game_background(menu_t *menu)
 {
     menu->settings_background_texture =
         sfTexture_createFromFile("../Game/Menu/Assets/halo_settings.jpg",
@@ -73,15 +53,7 @@ void init_in_game_background(menu_t *menu)
     resize_background_in_game(menu);
 }
 
-static void write_volume_on_window(sfText *text, int volume)
-{
-    char buf[13];
-
-    snprintf(buf, sizeof(buf), "Volume: %d%%", volume);
-    sfText_setString(text, buf);
-}
-
-void init_menu_in_game_texts(text_elemets_t *texts,
+static void init_menu_in_game_texts(text_elemets_t *texts,
     sfFont *font, app_context_t *ctx)
 {
     texts->save = create_menu_text(font, "Save", (sfVector2f){0, 0});
@@ -94,7 +66,7 @@ void init_menu_in_game_texts(text_elemets_t *texts,
     write_volume_on_window(texts->volume, *ctx->volume);
 }
 
-void change_button_pos(text_elemets_t *texts, sfView **view)
+static void change_button_pos(text_elemets_t *texts, sfView **view)
 {
     sfVector2f center = sfView_getCenter(*view);
     sfFloatRect save = sfText_getGlobalBounds(texts->save);
@@ -124,94 +96,32 @@ void draw_all_in_menu(app_context_t *ctx, text_elemets_t *texts, menu_t *menu)
     sfRenderWindow_display(*ctx->window);
 }
 
-static void change_volume(text_elemets_t *texts,
-    sfMouseButton button, app_context_t *ctx)
+int display_menu_in_game_events(game_t *game,
+    event_ctx_t event_ctx, text_elemets_t texts, menu_t menu)
 {
-    if (button == sfMouseRight && *ctx->volume > 0)
-        *ctx->volume = *ctx->volume - 10;
-    else if (button == sfMouseLeft && *ctx->volume < 100)
-        *ctx->volume = *ctx->volume + 10;
-    write_volume_on_window(texts->volume, *ctx->volume);
-    if (ctx->music)
-        sfMusic_setVolume(ctx->music, *ctx->volume);
-}
-
-switch_window_state_t handle_mouse_click(text_elemets_t *texts,
-    sfVector2f mouse_coordinates, sfMouseButton button, app_context_t *ctx)
-{
-    sfFloatRect save = sfText_getGlobalBounds(texts->save);
-    sfFloatRect play = sfText_getGlobalBounds(texts->play);
-    sfFloatRect exit = sfText_getGlobalBounds(texts->exit);
-    sfFloatRect volume = sfText_getGlobalBounds(texts->volume);
-
-    if (sfFloatRect_contains(&save, mouse_coordinates.x,
-        mouse_coordinates.y)) {
-        printf("the game is saved\n");
-        return STATE_MENU_IN_GAME;
+    while (sfRenderWindow_pollEvent(*event_ctx.ctx->window,
+        &event_ctx.event)) {
+        if (handle_event(&event_ctx, game, &texts, &menu) == 0)
+            return 1;
     }
-    if (sfFloatRect_contains(&play, mouse_coordinates.x, mouse_coordinates.y))
-        return STATE_GAME;
-    if (sfFloatRect_contains(&exit, mouse_coordinates.x, mouse_coordinates.y))
-        return STATE_MENU;
-    if (sfFloatRect_contains(&volume, mouse_coordinates.x,
-        mouse_coordinates.y)) {
-        change_volume(texts, button, ctx);
-    }
-    return STATE_MENU_IN_GAME;
-}
-
-static void resize_everything_in_window(sfEvent event,
-    app_context_t *ctx, menu_t *menu)
-{
-    sfVector2u size = {event.size.width, event.size.height};
-
-    sfView_setSize(*ctx->view, (sfVector2f){size.x, size.y});
-    sfView_setCenter(*ctx->view, (sfVector2f){size.x / 2.0f, size.y / 2.0f});
-    sfRenderWindow_setView(*ctx->window, *ctx->view);
-    resize_background_in_game(menu);
-}
-
-static int handle_event(sfEvent event, app_context_t *ctx, game_t *game,
-    text_elemets_t *texts, menu_t *menu)
-{
-    sfVector2i mouse_position;
-    sfVector2f mouse_coordinates;
-
-    if (event.type == sfEvtMouseButtonPressed) {
-        mouse_position = sfMouse_getPositionRenderWindow(*ctx->window);
-        mouse_coordinates =
-        sfRenderWindow_mapPixelToCoords(*ctx->window,
-            mouse_position, *ctx->view);
-        game->state =
-        handle_mouse_click(texts, mouse_coordinates,
-            event.mouseButton.button, ctx);
-        if (game->state != STATE_MENU_IN_GAME)
-            return 0;
-    }
-    if (event.type == sfEvtKeyReleased && event.key.code == sfKeyX) {
-        game->state = STATE_EXIT;
-        return 0;
-    }
-    if (event.type == sfEvtResized)
-        resize_everything_in_window(event, ctx, menu);
-    return 1;
+    return 0;
 }
 
 switch_window_state_t display_menu_in_game(app_context_t *ctx, game_t *game)
 {
     text_elemets_t texts;
-    sfEvent event;
     menu_t menu = { .window = game->window };
+    event_ctx_t event_ctx;
 
-    init_menu_in_game_texts(&texts, game->app.font, ctx);
+    event_ctx.ctx = ctx;
+    init_menu_in_game_texts(&texts, game->app.font, event_ctx.ctx);
     init_in_game_background(&menu);
     while (game->state == STATE_MENU_IN_GAME) {
-        while (sfRenderWindow_pollEvent(*ctx->window, &event))
-            if (handle_event(event, ctx, game, &texts, &menu) == 0)
-                return game->state;
-        change_button_pos(&texts, ctx->view);
-        change_button_color(&texts, ctx);
-        draw_all_in_menu(ctx, &texts, &menu);
+        if (display_menu_in_game_events(game, event_ctx, texts, menu) == 1)
+            return game->state;
+        change_button_pos(&texts, event_ctx.ctx->view);
+        change_button_color(&texts, event_ctx.ctx);
+        draw_all_in_menu(event_ctx.ctx, &texts, &menu);
     }
     return game->state;
 }

@@ -150,6 +150,9 @@ typedef struct s_particle {
     sfTime duration;
 } particle_t;
 
-
+typedef struct event_ctx_s {
+    sfEvent event;
+    app_context_t *ctx;
+} event_ctx_t;
 
 #endif /* !STRUCT_H_ */

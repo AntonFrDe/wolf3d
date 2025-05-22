@@ -62,5 +62,9 @@ void save_file(char *filename, game_t *game);
 char *my_superstrcat(int nb_elem, ...);
 char **my_str_to_word_array(char delimit, char *str);
 int my_arrlen(char **arr);
+void write_volume_on_window(sfText *text, int volume);
+int handle_event(event_ctx_t *event_ctx, game_t *game,
+    text_elemets_t *texts, menu_t *menu);
+void resize_background_in_game(menu_t *menu);
 
 #endif /* !WOLF_H_ */

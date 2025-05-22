@@ -157,7 +157,7 @@ static switch_window_state_t handle_event_loop(app_context_t *ctx,
     return STATE_SETTINGS;
 }
 
-static void display_settings_loop(app_context_t *ctx, game_t *game,
+void display_settings_loop(app_context_t *ctx, game_t *game,
     text_elemets_t *texts, menu_t *menu)
 {
     while (sfRenderWindow_pollEvent(*ctx->window, game->event)
