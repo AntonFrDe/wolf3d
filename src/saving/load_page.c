@@ -9,5 +9,8 @@
 
 switch_window_state_t display_loadpage(game_t *game)
 {
-        
+    char *txt;
+    // Display text and write box
+    //
+    game = load_file(txt, game);
 }
