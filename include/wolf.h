@@ -60,5 +60,7 @@ game_t *load_file(char *filename, game_t *game);
 switch_window_state_t display_loadpage(game_t *game);
 void save_file(char *filename, game_t *game);
 char *my_superstrcat(int nb_elem, ...);
+char **my_str_to_word_array(char delimit, char *str);
+int my_arrlen(char **arr);
 
 #endif /* !WOLF_H_ */

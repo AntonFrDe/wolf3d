@@ -35,6 +35,8 @@ TOOLS =	remove_bsn.c	\
 		key_event.c	\
 		draw_text.c	\
 		my_superstrcat.c	\
+		my_arrlen.c	\
+		my_str_to_warr_custom.c	\
 
 EVENT =	event_handling.c	\
 		settings_mouse_events.c	\
