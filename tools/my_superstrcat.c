@@ -17,11 +17,12 @@ static int cp_str(char *str1, char *str2)
     return i;
 }
 
-char *my_superstrcat(char *target, int nb_elem, ...)
+char *my_superstrcat(int nb_elem, ...)
 {
     va_list list;
     int len_total = 0;
     int parcour = 0;
+    char *target;
 
     va_start(list, nb_elem);
     for (int i = 0; i != nb_elem; i++)

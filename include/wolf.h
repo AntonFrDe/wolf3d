@@ -59,6 +59,6 @@ void draw_text_at(game_t *game, const char *str, sfVector2f position);
 game_t *load_file(char *filename, game_t *game);
 switch_window_state_t display_loadpage(game_t *game);
 void save_file(char *filename, game_t *game);
-char *my_superstrcat(char *target, int nb_elem, ...);
+char *my_superstrcat(int nb_elem, ...);
 
 #endif /* !WOLF_H_ */
