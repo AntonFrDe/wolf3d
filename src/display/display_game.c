@@ -60,7 +60,7 @@ static int display_scene(game_t *game)
 
 void display_game(game_t *game)
 {
-    sfRenderWindow_setFramerateLimit(game->window, 64);
+    sfRenderWindow_setFramerateLimit(game->window, 128);
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, sfBlack);
         if (display_scene(game) == 1)

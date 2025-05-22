@@ -33,7 +33,7 @@ void floor_cast(game_t *game)
     sfVertexArray *array = sfVertexArray_create();
     int tex_size = 64;
 
-    for (int y = game->video.height / 2; y != (int)game->video.height; y++) {
+    for (int y = game->video.height / 2; y != (int)game->video.height; y+=2) {
         fc = init_floor_cast(game, y);
         for (int x = 0; x < (int)game->video.width; x++) {
             fc.color = sfImage_getPixel(game->gmtx.floor,
