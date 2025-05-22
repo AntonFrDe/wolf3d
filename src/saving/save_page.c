@@ -9,10 +9,8 @@
 
 switch_window_state_t display_savepage(game_t *game)
 {
-    char *ans;
     char *txt;
     // Display text and write box
     // put textbox output in txt string
-    ans = my_superstrcat(3, "save/", txt, ".halosave");
-    save_file(ans, game);
+    save_file(my_superstrcat(3, "save/", txt, ".halosave"), game);
 }
