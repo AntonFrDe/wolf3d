@@ -16,10 +16,8 @@ static sfColor color_ray(game_t *game, int i)
     if (game->context.weapon.is_flash == 1 &&
         i > (int)game->video.width / 6 &&
         i < (int)game->video.width / 6 * 5) {
+        color = sfGreen;
         color.a = 25;
-        color.r = 255;
-        color.g = 255;
-        color.b = 255;
         return color;
     }
     return color;

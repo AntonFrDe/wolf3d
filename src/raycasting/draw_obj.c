@@ -7,7 +7,21 @@
 
 #include "../../include/wolf.h"
 
-sfVector2f init_dir_vector(game_t *game)
+
+static int ray_x_mob(int screen_x, game_t *game)
+{
+    if (game->context.weapon.is_flash == 0 ||
+        (screen_x < (int)game->video.width / 6 &&
+        screen_x > (int)game->video.width / 6 * 5)) {
+        sfSprite_setColor(game->mob.sp, sfWhite);
+        return 1;
+    }
+    sfSprite_setColor(game->mob.sp, sfGreen);
+    return 0;
+}
+
+
+static sfVector2f init_dir_vector(game_t *game)
 {
     sfVector2f dir = { .x = game->mob.pos.x - game->player.loc.x,
         .y = game->mob.pos.y - game->player.loc.y};
@@ -15,7 +29,7 @@ sfVector2f init_dir_vector(game_t *game)
     return dir;
 }
 
-sfVector2f init_transform_vector(game_t *game, sfVector2f dir)
+static sfVector2f init_transform_vector(game_t *game, sfVector2f dir)
 {
     float inv_det = 1.0f / (game->player.plane.x * game->player.dir.y -
         game->player.dir.x * game->player.plane.y);
@@ -34,9 +48,9 @@ int draw_obj(game_t *game)
         (1 + transform.x / transform.y));
     float scale = game->video.height / transform.y * 2;
 
-    if (transform.y >=
-        game->gmtx.raybuff[screen_x] ||
-        transform.y <= 0) {
+    if (screen_x < 0 || screen_x > (int)game->video.width - 1 ||
+        transform.y >= game->gmtx.raybuff[screen_x]
+        && ray_x_mob(screen_x, game) || transform.y <= 0) {
         sfSprite_setPosition(game->mob.sp, (sfVector2f){0, 0});
         return 0;
     }
