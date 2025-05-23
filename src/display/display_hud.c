@@ -25,5 +25,6 @@ void display_hud(game_t *game)
         draw_text_at(game, kills, (sfVector2f){game->video.height / 15,
             game->video.width / 15});
         free(kills);
-    }   
+    }
+    sfRenderWindow_drawSprite(game->window, game->context.crosshair, NULL);
 }
