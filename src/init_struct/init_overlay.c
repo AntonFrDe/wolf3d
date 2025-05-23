@@ -7,21 +7,6 @@
 
 #include "../../include/wolf.h"
 
-sfSprite *init_crosshair(game_t *game)
-{
-    sfTexture *tx = sfTexture_createFromFile("Assets/crosshair.png", NULL);
-    sfSprite *sp = sfSprite_create();
-    float scale = 30;
-
-    sfSprite_setTexture(sp, tx, sfFalse);
-    sfSprite_setColor(sp, sfRed);
-    sfSprite_setPosition(sp, (sfVector2f){
-        .x = game->video.width / 2,
-        .y = game->video.height / 2});
-    sfSprite_setScale(sp, (sfVector2f){scale, scale});
-    return sp;
-}
-
 context_t init_overlay(game_t *game)
 {
     context_t ctx;
@@ -40,6 +25,5 @@ context_t init_overlay(game_t *game)
     ctx.weapon = create_weapon("Assets/weapon.png", win_size, scale, offset);
     ctx.hud = create_hud("Assets/hud2.png");
     ctx.ammo = create_ammo_display();
-    ctx.crosshair = init_crosshair(game);
     return ctx;
 }

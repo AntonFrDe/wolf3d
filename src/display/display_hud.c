@@ -34,5 +34,4 @@ void display_hud(game_t *game)
     sfRenderWindow_drawText(game->window, game->context.ammo.text, NULL);
     if (game->mob.kills)
         display_kills(game);
-    sfRenderWindow_drawSprite(game->window, game->context.crosshair, NULL);
 }

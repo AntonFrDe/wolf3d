@@ -25,7 +25,7 @@ void shooting_mob(game_t *game)
     int scale = (int)sfSprite_getScale(game->mob.sp).x;
     int center = (int)game->video.width / 2;
 
-    if (x > center - 32 * scale && x < center + 32 * scale) {
+    if (x > center - 128 * scale && x < center + 128 * scale ) {
         game->mob.pos = new_mob_pos(game);
         game->mob.kills++;
     }
