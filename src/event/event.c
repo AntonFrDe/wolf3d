@@ -22,6 +22,7 @@ static void fire_event(game_t *game, context_t *ctx, sfSound *fire)
             ctx->weapon.shoot_frames[0]);
         update_ammo_text(&ctx->ammo);
         sfSound_play(fire);
+        shooting_mob(game);
     }
 }
 
@@ -45,8 +46,6 @@ void handle_events(game_t *game)
         reload_event(&game->context, game->context.reload);
     if (sfKeyboard_isKeyPressed(sfKeyF))
         game->context.weapon.is_flash = game->context.weapon.is_flash == 0;
-    if (sfKeyboard_isKeyPressed(sfKeyP)) {
+    if (sfKeyboard_isKeyPressed(sfKeyP))
         game->fps = game->fps == sfTrue ? sfFalse : sfTrue;
-        printf("fps : %.2f\n", 1 / game->delta);
-    }
 }

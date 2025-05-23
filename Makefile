@@ -44,7 +44,7 @@ TOOLS =	remove_bsn.c	\
 EVENT =	event_handling.c	\
 		settings_mouse_events.c	\
 		event.c	\
-		mooving_mob.c	\
+		mob_events.c	\
 
 OVERLAY =	ammo.c	\
 			hud.c	\

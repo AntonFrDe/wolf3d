@@ -133,6 +133,7 @@ typedef struct mob_s {
     sfSprite *sp;
     float distance;
     sfClock *anim;
+    int kills;
 } mob_t;
 
 typedef struct game_s {

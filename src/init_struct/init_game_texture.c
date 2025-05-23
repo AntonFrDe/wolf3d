@@ -22,7 +22,7 @@ game_txtr_t init_walltx(game_t *game, game_txtr_t game_tx)
     game_tx.wtx[3].size = 1024;
     game_tx.wtx[3].tx = sfTexture_createFromFile("Assets/pics/blood.png"
         , NULL);
-    game_tx.raybuff = malloc(sizeof(float) * game->video.width);
+    game_tx.raybuff = malloc(sizeof(float) * (game->video.width));
     return game_tx;
 }
 

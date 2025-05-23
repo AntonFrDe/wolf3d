@@ -49,6 +49,7 @@ static void render_game(game_t *game)
         draw_text_at(game, nb, (sfVector2f){0, 0});
     }
     sfRenderWindow_display(game->window);
+    free(nb);
 }
 
 static void update_flash(context_t *ctx)

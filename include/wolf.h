@@ -66,8 +66,9 @@ void write_volume_on_window(sfText *text, int volume);
 int handle_event(event_ctx_t *event_ctx, game_t *game,
     text_elemets_t *texts, menu_t *menu);
 void resize_background_in_game(menu_t *menu);
-mob_t init_mob(game_t *game);
+mob_t init_mob(void);
 int draw_obj(game_t *game);
 void mooving_mob(game_t *game);
+void shooting_mob(game_t *game);
 
 #endif /* !WOLF_H_ */
