@@ -10,6 +10,7 @@
 void display_hud(game_t *game)
 {
     char *kills = malloc(sizeof(char) * 30);
+
     update_weapon(&game->context.weapon, &game->context.ammo,
     sfRenderWindow_getSize(game->window));
     sfRenderWindow_drawSprite(game->window, game->context.weapon.sprite, NULL);

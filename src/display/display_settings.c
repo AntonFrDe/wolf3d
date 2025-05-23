@@ -35,7 +35,7 @@ void resize_settings_background(menu_t *menu)
 void init_settings_background(menu_t *menu)
 {
     menu->settings_background_texture =
-    sfTexture_createFromFile("../Game/Menu/Assets/halo_settings.jpg", NULL);
+    sfTexture_createFromFile("Assets/halo_settings.jpg", NULL);
     menu->settings_background_sprite = sfSprite_create();
     sfSprite_setTexture(menu->settings_background_sprite,
         menu->settings_background_texture, sfTrue);
