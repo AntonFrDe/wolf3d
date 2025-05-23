@@ -50,6 +50,7 @@ static sfVector2f init_dir_vector_key(game_t *game)
 {
     sfVector2f dir = {.x = game->key.pos.x - game->player.loc.x,
         .y = game->key.pos.y - game->player.loc.y};
+
     return dir;
 }
 
