@@ -71,5 +71,7 @@ mob_t init_mob(void);
 int draw_obj(game_t *game);
 void mooving_mob(game_t *game);
 void shooting_mob(game_t *game);
+keyy_t init_key(void);
+int draw_key(game_t *game);
 
 #endif /* !WOLF_H_ */

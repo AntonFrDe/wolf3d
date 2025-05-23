@@ -13,7 +13,8 @@ raycast_t calc_dda(game_t *game, raycast_t raycast)
         .y = (int)game->player.loc.y};
 
     raycast.side = 0;
-    while (raycast.hit == 0 || (raycast.hit == 2 && raycast.side_dist.x < 3)) {
+    while (raycast.hit == 0 || (raycast.hit == 2 && raycast.side_dist.x < 3
+        && game->key.recup == 1)) {
         if (raycast.side_dist.x < raycast.side_dist.y) {
             raycast.side_dist.x += raycast.delta_dist.x;
             map.x += raycast.steps.x;

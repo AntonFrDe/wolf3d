@@ -7,6 +7,26 @@
 
 #include "../../include/wolf.h"
 
+keyy_t init_key(void)
+{
+    keyy_t key;
+
+    key.distance = 1;
+    key.pos = (sfVector2f){12, 3};
+    key.tx1 = sfTexture_createFromFile(
+        "Assets/Blue/blue_crystal_0000.png", NULL);
+    key.tx2 = sfTexture_createFromFile(
+        "Assets/Blue/blue_crystal_0001.png", NULL);
+    key.tx3 = sfTexture_createFromFile(
+        "Assets/Blue/blue_crystal_0002.png", NULL);
+    key.tx4 = sfTexture_createFromFile(
+        "Assets/Blue/blue_crystal_0003.png", NULL);
+    key.sp = sfSprite_create();
+    sfSprite_setTexture(key.sp, key.tx1, sfTrue);
+    key.recup = 0;
+    return key;
+}
+
 mob_t init_mob(void)
 {
     mob_t mob;

@@ -18,8 +18,7 @@ static int ray_x_mob(int screen_x, game_t *game)
     return 0;
 }
 
-
-static sfVector2f init_dir_vector(game_t *game)
+static sfVector2f init_dir_vector_mob(game_t *game)
 {
     sfVector2f dir = { .x = game->mob.pos.x - game->player.loc.x,
         .y = game->mob.pos.y - game->player.loc.y};
@@ -38,9 +37,47 @@ static sfVector2f init_transform_vector(game_t *game, sfVector2f dir)
     return transform;
 }
 
+static int ray_x_key(int screen_x, game_t *game)
+{
+    if (screen_x < (int)game->video.width / 6 ||
+        screen_x > (int)game->video.width / 6 * 5) {
+        return 1;
+    }
+    return 0;
+}
+
+static sfVector2f init_dir_vector_key(game_t *game)
+{
+    sfVector2f dir = {.x = game->key.pos.x - game->player.loc.x,
+        .y = game->key.pos.y - game->player.loc.y};
+    return dir;
+}
+
+int draw_key(game_t *game)
+{
+    sfVector2f dir = init_dir_vector_key(game);
+    sfVector2f transform = init_transform_vector(game, dir);
+    int screen_x = (int)((game->video.width / 2) *
+        (1 + transform.x / transform.y));
+    float scale = game->video.height / transform.y;
+
+    if (transform.y <= 0 || (!game->context.weapon.is_flash &&
+        (screen_x < 0 || screen_x > (int)game->video.width - 1 ||
+        transform.y >= game->gmtx.raybuff[screen_x])))
+        return 0;
+    if (game->context.weapon.is_flash)
+        if (ray_x_key(screen_x, game))
+            return 0;
+    sfSprite_setScale(game->key.sp, (sfVector2f){scale / 64, scale / 64});
+    sfSprite_setPosition(game->key.sp, (sfVector2f){
+        screen_x, game->video.height / 2 - scale / 2});
+    game->key.distance = dir.x * dir.x + dir.y * dir.y;
+    return 1;
+}
+
 int draw_obj(game_t *game)
 {
-    sfVector2f dir = init_dir_vector(game);
+    sfVector2f dir = init_dir_vector_mob(game);
     sfVector2f transform = init_transform_vector(game, dir);
     int screen_x = (int)((game->video.width / 2) *
         (1 + transform.x / transform.y));
@@ -48,9 +85,9 @@ int draw_obj(game_t *game)
 
     sfSprite_setPosition(game->mob.sp, (sfVector2f){0, 0});
     sfSprite_setColor(game->mob.sp, sfWhite);
-    if (transform.y <= 0 || !game->context.weapon.is_flash && (screen_x < 0 ||
-        screen_x > (int)game->video.width - 1 ||
-        transform.y >= game->gmtx.raybuff[screen_x]))
+    if (transform.y <= 0 || (!game->context.weapon.is_flash &&
+        (screen_x < 0 || screen_x > (int)game->video.width - 1 ||
+        transform.y >= game->gmtx.raybuff[screen_x])))
         return 0;
     if (game->context.weapon.is_flash)
         if (ray_x_mob(screen_x, game))

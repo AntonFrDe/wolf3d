@@ -14,11 +14,11 @@ static void move_forward(game_t *game, float speed)
     int x = (int)(game->player.loc.x + game->player.dir.x * speed);
     int y = (int)(game->player.loc.y + game->player.dir.y * speed);
 
-    if (game->map[y][(int)game->player.loc.x] == AIR ||
-        game->map[y][(int)game->player.loc.x] == DOOR)
+    if (game->map[y][(int)(game->player.loc.x)] == AIR ||
+        (game->map[y][(int)(game->player.loc.x)] == DOOR && game->key.recup))
         game->player.loc.y += game->player.dir.y * speed;
-    if (game->map[(int)game->player.loc.y][x] == AIR ||
-        game->map[(int)game->player.loc.y][x] == DOOR)
+    if (game->map[(int)(game->player.loc.y)][x] == AIR ||
+        (game->map[(int)(game->player.loc.y)][x] == DOOR && game->key.recup))
         game->player.loc.x += game->player.dir.x * speed;
 }
 
@@ -27,11 +27,11 @@ static void move_backward(game_t *game, float speed)
     int x = (int)(game->player.loc.x - game->player.dir.x * speed);
     int y = (int)(game->player.loc.y - game->player.dir.y * speed);
 
-    if (game->map[y][(int)game->player.loc.x] == AIR ||
-        game->map[y][(int)game->player.loc.x] == DOOR)
+    if (game->map[y][(int)(game->player.loc.x)] == AIR ||
+        (game->map[y][(int)(game->player.loc.x)] == DOOR && game->key.recup))
         game->player.loc.y -= game->player.dir.y * speed;
-    if (game->map[(int)game->player.loc.y][x] == AIR ||
-        game->map[(int)game->player.loc.y][x] == DOOR)
+    if (game->map[(int)(game->player.loc.y)][x] == AIR ||
+        (game->map[(int)(game->player.loc.y)][x] == DOOR && game->key.recup))
         game->player.loc.x -= game->player.dir.x * speed;
 }
 
@@ -42,11 +42,11 @@ static void strafe(game_t *game, float speed, int dir)
     int x = (int)(game->player.loc.x + plane_x * speed);
     int y = (int)(game->player.loc.y + plane_y * speed);
 
-    if (game->map[y][(int)game->player.loc.x] == AIR ||
-        game->map[(int)game->player.loc.y][x] == DOOR)
+    if (game->map[y][(int)(game->player.loc.x)] == AIR ||
+        (game->map[(int)(game->player.loc.y)][x] == DOOR && game->key.recup))
         game->player.loc.y += plane_y * speed;
-    if (game->map[(int)game->player.loc.y][x] == AIR ||
-        game->map[(int)game->player.loc.y][x] == DOOR)
+    if (game->map[(int)(game->player.loc.y)][x] == AIR ||
+        (game->map[(int)(game->player.loc.y)][x] == DOOR && game->key.recup))
         game->player.loc.x += plane_x * speed;
 }
 
@@ -100,4 +100,7 @@ void event_handling(game_t *game)
 {
     mooving_func(game);
     turn_event(game);
+    if (game->player.loc.x == game->key.pos.x &&
+        game->player.loc.y == game->key.pos.y)
+        game->key.recup = 1;
 }

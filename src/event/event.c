@@ -44,8 +44,10 @@ void handle_events(game_t *game)
         fire_event(game, &game->context, game->context.fire);
     if (sfKeyboard_isKeyPressed(sfKeyR))
         reload_event(&game->context, game->context.reload);
-    if (sfKeyboard_isKeyPressed(sfKeyF))
+    if (game->event->type == sfEvtKeyReleased
+        && game->event->key.code == sfKeyF)
         game->context.weapon.is_flash = game->context.weapon.is_flash == 0;
-    if (sfKeyboard_isKeyPressed(sfKeyP))
+    if (game->event->type == sfEvtKeyReleased
+        && game->event->key.code == sfKeyP)
         game->fps = game->fps == sfTrue ? sfFalse : sfTrue;
 }

@@ -35,9 +35,18 @@ void mooving_mob(game_t *game)
 {
     sfIntRect rect = {.height = 64, .left = 0, .top = 0, .width = 64};
     float time = sfTime_asSeconds(sfClock_getElapsedTime(game->mob.anim));
+    int key_frame = (int)(time * 10) % 4;
 
     if (time >= 0.6)
         sfClock_restart(game->mob.anim);
     rect.left = 64 * (int)(time * 10);
+    if (key_frame == 0)
+        sfSprite_setTexture(game->key.sp, game->key.tx1, sfTrue);
+    if (key_frame == 1)
+        sfSprite_setTexture(game->key.sp, game->key.tx2, sfTrue);
+    if (key_frame == 2)
+        sfSprite_setTexture(game->key.sp, game->key.tx3, sfTrue);
+    if (key_frame == 3)
+        sfSprite_setTexture(game->key.sp, game->key.tx4, sfTrue);
     sfSprite_setTextureRect(game->mob.sp, rect);
 }

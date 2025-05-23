@@ -65,5 +65,7 @@ void cast_ray(game_t *game)
     }
     if (draw_obj(game))
         sfRenderTexture_drawSprite(game->gmtx.walltx, game->mob.sp, NULL);
+    if (game->key.recup == 0 && draw_key(game))
+        sfRenderTexture_drawSprite(game->gmtx.walltx, game->key.sp, NULL);
     sfRenderTexture_display(game->gmtx.walltx);
 }

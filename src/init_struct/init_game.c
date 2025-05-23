@@ -28,5 +28,6 @@ game_t *init_game(void)
     game->delta = 0;
     game->fps = sfFalse;
     game->mob = init_mob();
+    game->key = init_key();
     return game;
 }

@@ -136,8 +136,21 @@ typedef struct mob_s {
     int kills;
 } mob_t;
 
+typedef struct keyy_s {
+    sfVector2f pos;
+    sfTexture *tx1;
+    sfTexture *tx2;
+    sfTexture *tx3;
+    sfTexture *tx4;
+    sfSprite *sp;
+    float distance;
+    sfClock *anim;
+    int recup;
+} keyy_t;
+
 typedef struct game_s {
     mob_t mob;
+    keyy_t key;
     game_txtr_t gmtx;
     player_t player;
     int **map;
