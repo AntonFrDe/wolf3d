@@ -10,10 +10,8 @@
 
 static int ray_x_mob(int screen_x, game_t *game)
 {
-    if (game->context.weapon.is_flash == 0 ||
-        (screen_x < (int)game->video.width / 6 &&
-        screen_x > (int)game->video.width / 6 * 5)) {
-        sfSprite_setColor(game->mob.sp, sfWhite);
+    if (screen_x < (int)game->video.width / 6 ||
+        screen_x > (int)game->video.width / 6 * 5) {
         return 1;
     }
     sfSprite_setColor(game->mob.sp, sfGreen);
@@ -48,16 +46,18 @@ int draw_obj(game_t *game)
         (1 + transform.x / transform.y));
     float scale = game->video.height / transform.y * 2;
 
-    if ((screen_x < 0 || screen_x > (int)game->video.width - 1 ||
-        transform.y >= game->gmtx.raybuff[screen_x])
-        && ray_x_mob(screen_x, game) || transform.y <= 0) {
-        sfSprite_setPosition(game->mob.sp, (sfVector2f){0, 0});
+    sfSprite_setPosition(game->mob.sp, (sfVector2f){0, 0});
+    sfSprite_setColor(game->mob.sp, sfWhite);
+    if (transform.y <= 0 || !game->context.weapon.is_flash && (screen_x < 0 ||
+        screen_x > (int)game->video.width - 1 ||
+        transform.y >= game->gmtx.raybuff[screen_x]))
         return 0;
-    }
+    if (game->context.weapon.is_flash)
+        if (ray_x_mob(screen_x, game))
+            return 0;
     sfSprite_setScale(game->mob.sp, (sfVector2f){scale / 64, scale / 64});
     sfSprite_setPosition(game->mob.sp, (sfVector2f){
-        screen_x, game->video.height / 2 + scale / 2
-    });
+        screen_x, game->video.height / 2 + scale / 2});
     game->mob.distance = dir.x * dir.x + dir.y * dir.y;
     return 1;
 }
