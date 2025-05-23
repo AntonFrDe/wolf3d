@@ -100,6 +100,6 @@ void event_handling(game_t *game)
 {
     mooving_func(game);
     turn_event(game);
-    if (game->key.distance < 1)
+    if (game->key.distance < 2)
         game->key.recup = 1;
 }

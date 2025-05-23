@@ -51,14 +51,7 @@ OVERLAY =	ammo.c	\
 			update.c	\
 			weapon.c	\
 
-SAVE =	load_handling.c	\
-		load_page.c	\
-		save_handling.c	\
-		save_page.c	\
-
 SRC :=  $(addprefix src/, $(SRC))
-
-SAVE := $(addprefix src/saving/, $(SAVE))
 
 STRUCT := $(addprefix src/init_struct/, $(STRUCT))
 

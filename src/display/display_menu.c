@@ -118,7 +118,6 @@ static switch_window_state_t handle_menu_events_condition(menu_t *menu,
 {
     sfFloatRect start_bounds;
     sfFloatRect settings_bounds;
-    sfFloatRect load_bounds;
     sfVector2f pos;
 
     if (event.type == sfEvtMouseButtonPressed) {
@@ -126,7 +125,6 @@ static switch_window_state_t handle_menu_events_condition(menu_t *menu,
             sfMouse_getPositionRenderWindow(menu->window), menu->view);
         start_bounds = sfText_getGlobalBounds(menu->start);
         settings_bounds = sfText_getGlobalBounds(menu->settings);
-        load_bounds = sfText_getGlobalBounds(menu->load);
         if (sfFloatRect_contains(&start_bounds, pos.x, pos.y))
             return STATE_GAME;
         if (sfFloatRect_contains(&settings_bounds, pos.x, pos.y))
