@@ -48,8 +48,8 @@ int draw_obj(game_t *game)
         (1 + transform.x / transform.y));
     float scale = game->video.height / transform.y * 2;
 
-    if (screen_x < 0 || screen_x > (int)game->video.width - 1 ||
-        transform.y >= game->gmtx.raybuff[screen_x]
+    if ((screen_x < 0 || screen_x > (int)game->video.width - 1 ||
+        transform.y >= game->gmtx.raybuff[screen_x])
         && ray_x_mob(screen_x, game) || transform.y <= 0) {
         sfSprite_setPosition(game->mob.sp, (sfVector2f){0, 0});
         return 0;
