@@ -11,7 +11,7 @@
 static void fire_event(game_t *game, context_t *ctx, sfSound *fire)
 {
     if (!ctx->weapon.is_shooting && !ctx->weapon.is_reloading
-        && ctx->ammo.ammo > 0) {
+        && ctx->ammo.ammo > 0 && ctx->weapon.is_flash == 0) {
         ctx->weapon.is_shooting = 1;
         ctx->weapon.shoot_offset = 0;
         ctx->ammo.ammo--;

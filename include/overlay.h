@@ -52,6 +52,7 @@ typedef struct context_s {
     sfSound *fire;
     sfSound *reload;
     sfVector2f shoot_fire_pos;
+    sfSprite *crosshair;
 } context_t;
 
 hud_t create_hud(const char *filepath);

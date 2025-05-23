@@ -46,7 +46,7 @@ static void render_game(game_t *game, sfSprite *crosshair_sprite)
     draw_minimap(game);
     if (game->fps) {
         sprintf(nb, "%.0f", 1 / game->delta);
-        draw_text_at(game, nb, (sfVector2f){0, 0});
+        draw_text_at(game, nb, (sfVector2f){0, 0}, 50);
     }
     sfRenderWindow_drawSprite(game->window, crosshair_sprite, NULL);
     sfRenderWindow_display(game->window);
