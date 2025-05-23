@@ -74,11 +74,13 @@ static void update_flash(context_t *ctx)
 sfSprite *init_crosshair_game(game_t *game)
 {
     float scale = 0.2f;
-    sfTexture *crosshair_texture = sfTexture_createFromFile("Assets/crossair.png", NULL);
+    sfTexture *crosshair_texture = sfTexture_createFromFile("Assets/csair.png",
+    NULL);
     sfSprite *crosshair_sprite = sfSprite_create();
 
     sfSprite_setTexture(crosshair_sprite, crosshair_texture, sfTrue);
-    sfSprite_setPosition(crosshair_sprite, (sfVector2f){game->video.width / 2 - 50, (game->video.height / 2) - 50});
+    sfSprite_setPosition(crosshair_sprite, (sfVector2f){game->video.width
+    / 2 - 50, (game->video.height / 2) - 50});
     sfSprite_setScale(crosshair_sprite, (sfVector2f){scale, scale});\
     return crosshair_sprite;
 }
