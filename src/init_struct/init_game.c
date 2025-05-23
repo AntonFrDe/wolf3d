@@ -27,5 +27,6 @@ game_t *init_game(void)
     game->clock = sfClock_create();
     game->delta = 0;
     game->fps = sfFalse;
+    game->mob = init_mob(game);
     return game;
 }

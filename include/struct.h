@@ -114,6 +114,7 @@ typedef struct game_txtr_s {
     sfImage *floor;
     wall_tx_t *wtx;
     sfRenderTexture *flashlight;
+    float *raybuff;
 } game_txtr_t;
 
 typedef struct floor_cast_s {
@@ -126,7 +127,16 @@ typedef struct floor_cast_s {
     float row_distance;
 } floor_cast_t;
 
+typedef struct mob_s {
+    sfVector2f pos;
+    sfTexture *tx;
+    sfSprite *sp;
+    float distance;
+    sfClock *anim;
+} mob_t;
+
 typedef struct game_s {
+    mob_t mob;
     game_txtr_t gmtx;
     player_t player;
     int **map;

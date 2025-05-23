@@ -7,7 +7,7 @@
 
 #include "../../include/wolf.h"
 
-wall_tx_t *init_walltx(game_txtr_t game_tx)
+game_txtr_t init_walltx(game_t *game, game_txtr_t game_tx)
 {
     game_tx.wtx = malloc(sizeof(wall_tx_t) * 5);
     game_tx.wtx[0].size = 1024;
@@ -22,7 +22,8 @@ wall_tx_t *init_walltx(game_txtr_t game_tx)
     game_tx.wtx[3].size = 1024;
     game_tx.wtx[3].tx = sfTexture_createFromFile("Assets/pics/blood.png"
         , NULL);
-    return game_tx.wtx;
+    game_tx.raybuff = malloc(sizeof(float) * game->video.width);
+    return game_tx;
 }
 
 game_txtr_t init_game_texture(game_t *game)
@@ -34,7 +35,7 @@ game_txtr_t init_game_texture(game_t *game)
 
     rect.height = game->video.height / 2;
     rect.width = game->video.width;
-    game_tx.wtx = init_walltx(game_tx);
+    game_tx = init_walltx(game, game_tx);
     game_tx.skybg = sfSprite_create();
     sfTexture_setRepeated(tx, sfTrue);
     sfSprite_setTexture(game_tx.skybg, tx, false);

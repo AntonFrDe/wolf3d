@@ -15,6 +15,7 @@ STRUCT =	init_player.c	\
 			init_app.c	\
 			init_overlay.c	\
 			init_game_texture.c	\
+			init_mob.c	\
 
 DISPLAY =	display_game.c	\
 			minimap.c	\
@@ -30,6 +31,7 @@ RAYCAST =	cast_ray.c	\
 			draw_ray.c	\
 			draw_txtr.c	\
 			floor_cast.c	\
+			draw_obj.c	\
 
 TOOLS =	remove_bsn.c	\
 		print_vector.c	\
@@ -42,6 +44,7 @@ TOOLS =	remove_bsn.c	\
 EVENT =	event_handling.c	\
 		settings_mouse_events.c	\
 		event.c	\
+		mooving_mob.c	\
 
 OVERLAY =	ammo.c	\
 			hud.c	\

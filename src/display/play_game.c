@@ -26,6 +26,7 @@ static void update_game(game_t *game)
         (sfVector2i){game->video.width / 2, game->video.height / 2},
         game->window
     );
+    mooving_mob(game);
 }
 
 static void render_game(game_t *game)
@@ -75,6 +76,7 @@ switch_window_state_t play_game(game_t *game)
     sfRenderWindow_setMouseCursorVisible(game->window, sfFalse);
     game->clock = sfClock_create();
     game->context.shoot_fire_pos = (sfVector2f){1110, 350};
+    game->mob.anim = sfClock_create();
     while (game->state == STATE_GAME) {
         handle_events_loop(game);
         update_flash(&game->context);

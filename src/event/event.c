@@ -8,7 +8,7 @@
 #include "../../include/wolf.h"
 #include "math.h"
 
-static void fire_event(context_t *ctx, sfSound *fire)
+static void fire_event(game_t *game, context_t *ctx, sfSound *fire)
 {
     if (!ctx->weapon.is_shooting && !ctx->weapon.is_reloading
         && ctx->ammo.ammo > 0) {
@@ -40,7 +40,7 @@ void handle_events(game_t *game)
         sfRenderWindow_close(game->window);
     if (game->event->type == sfEvtMouseButtonPressed
         && game->event->mouseButton.button == sfMouseLeft)
-        fire_event(&game->context, game->context.fire);
+        fire_event(game, &game->context, game->context.fire);
     if (sfKeyboard_isKeyPressed(sfKeyR))
         reload_event(&game->context, game->context.reload);
     if (sfKeyboard_isKeyPressed(sfKeyF))

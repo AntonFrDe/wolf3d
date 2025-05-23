@@ -58,7 +58,12 @@ void cast_ray(game_t *game)
     for (int i = 0; i != (int)game->video.width; i++) {
         raycast = init_value(game, i);
         raycast = calc_dda(game, raycast);
+        game->gmtx.raybuff[i] = raycast.side == 0
+            ? raycast.side_dist.x - raycast.delta_dist.x
+            : raycast.side_dist.y - raycast.delta_dist.y;
         draw_txtr(game, raycast, i);
     }
+    if (draw_obj(game))
+        sfRenderTexture_drawSprite(game->gmtx.walltx, game->mob.sp, NULL);
     sfRenderTexture_display(game->gmtx.walltx);
 }
