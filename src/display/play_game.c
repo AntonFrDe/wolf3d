@@ -71,7 +71,7 @@ static void update_flash(context_t *ctx)
     }
 }
 
-sfSprite *init_crosshair(game_t *game)
+sfSprite *init_crosshair_game(game_t *game)
 {
     float scale = 0.2f;
     sfTexture *crosshair_texture = sfTexture_createFromFile("Assets/crossair.png", NULL);
@@ -93,7 +93,7 @@ switch_window_state_t play_game(game_t *game)
     game->clock = sfClock_create();
     game->context.shoot_fire_pos = (sfVector2f){1110, 350};
     game->mob.anim = sfClock_create();
-    crosshair_sprite = init_crosshair(game);
+    crosshair_sprite = init_crosshair_game(game);
     while (game->state == STATE_GAME) {
         handle_events_loop(game);
         update_flash(&game->context);
