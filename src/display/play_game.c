@@ -29,7 +29,7 @@ static void update_game(game_t *game)
     mooving_mob(game);
 }
 
-static void render_game(game_t *game)
+static void render_game(game_t *game, sfSprite *crosshair_sprite)
 {
     char *nb = malloc(MAX_FPS_SIZE);
 
@@ -48,6 +48,7 @@ static void render_game(game_t *game)
         sprintf(nb, "%.0f", 1 / game->delta);
         draw_text_at(game, nb, (sfVector2f){0, 0});
     }
+    sfRenderWindow_drawSprite(game->window, crosshair_sprite, NULL);
     sfRenderWindow_display(game->window);
     free(nb);
 }
@@ -70,19 +71,34 @@ static void update_flash(context_t *ctx)
     }
 }
 
+sfSprite *init_crosshair(game_t *game)
+{
+    float scale = 0.2f;
+    sfTexture *crosshair_texture = sfTexture_createFromFile("Assets/crossair.png", NULL);
+    sfSprite *crosshair_sprite = sfSprite_create();
+
+    sfSprite_setTexture(crosshair_sprite, crosshair_texture, sfTrue);
+    sfSprite_setPosition(crosshair_sprite, (sfVector2f){game->video.width / 2 - 50, (game->video.height / 2) - 50});
+    sfSprite_setScale(crosshair_sprite, (sfVector2f){scale, scale});\
+    return crosshair_sprite;
+}
+
 switch_window_state_t play_game(game_t *game)
 {
+    sfSprite *crosshair_sprite;
+
     game->context = init_overlay(game);
     game->gmtx = init_game_texture(game);
     sfRenderWindow_setMouseCursorVisible(game->window, sfFalse);
     game->clock = sfClock_create();
     game->context.shoot_fire_pos = (sfVector2f){1110, 350};
     game->mob.anim = sfClock_create();
+    crosshair_sprite = init_crosshair(game);
     while (game->state == STATE_GAME) {
         handle_events_loop(game);
         update_flash(&game->context);
         update_game(game);
-        render_game(game);
+        render_game(game, crosshair_sprite);
         game->delta = sfTime_asSeconds(sfClock_restart(game->clock));
     }
     sfRenderWindow_setMouseCursorVisible(game->window, sfTrue);
