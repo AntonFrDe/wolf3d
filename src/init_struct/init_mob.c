@@ -11,7 +11,7 @@ keyy_t init_key(void)
 {
     keyy_t key;
 
-    key.distance = 1;
+    key.distance = 10;
     key.pos = (sfVector2f){12, 3};
     key.tx1 = sfTexture_createFromFile(
         "Assets/Blue/blue_crystal_0000.png", NULL);
