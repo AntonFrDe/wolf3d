@@ -45,7 +45,7 @@ static void change_button_color(text_elemets_t *texts, app_context_t *ctx)
 static void init_in_game_background(menu_t *menu)
 {
     menu->settings_background_texture =
-        sfTexture_createFromFile("../Game/Menu/Assets/halo_settings.jpg",
+        sfTexture_createFromFile("Assets/halo_settings.jpg",
             NULL);
     menu->settings_background_sprite = sfSprite_create();
     sfSprite_setTexture(menu->settings_background_sprite,
