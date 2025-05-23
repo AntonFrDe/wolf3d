@@ -18,7 +18,6 @@ static int ray_x_mob(int screen_x, game_t *game)
     return 0;
 }
 
-
 static sfVector2f init_dir_vector(game_t *game)
 {
     sfVector2f dir = { .x = game->mob.pos.x - game->player.loc.x,
